@@ -11,7 +11,7 @@ namespace DAL.Interfaces
     {
         IEnumerable<ResultСhecking> GetAll();
         IEnumerable<ResultСhecking> GetByCheckJobId(int CheckJobId);
-        void Create(ResultСhecking resultСhecking);
+        ResultСhecking Create(ResultСhecking resultСhecking);
         ResultСhecking Update(ResultСhecking resultСhecking);
         void Delete(int id);
     }

@@ -18,10 +18,11 @@ namespace DAL.Repositories
             _ctx = new MySQLContext();
         }
 
-        public void Create(ResultСhecking resultСhecking)
+        public ResultСhecking Create(ResultСhecking resultСhecking)
         {
             _ctx.ResultСheckings.Add(resultСhecking);
             _ctx.SaveChanges();
+            return resultСhecking;
         }
 
         public void Delete(int id)
