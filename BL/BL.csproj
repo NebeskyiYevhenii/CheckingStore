@@ -45,9 +45,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
-    <Compile Include="Models\CheckJobModel.cs" />
-    <Compile Include="Models\ResultСheckingModel.cs" />
-    <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Models\CheckJobBL.cs" />
+    <Compile Include="Models\ResultСheckingBL.cs" />
+    <Compile Include="Models\UserBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ResultCheckingService.cs" />
     <Compile Include="Services\IServices\IResultCheckingService.cs" />

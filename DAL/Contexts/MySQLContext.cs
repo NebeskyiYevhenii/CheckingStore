@@ -18,7 +18,7 @@ namespace DAL.Contexts
         //{
         //}
         public DbSet<ResultСhecking> ResultСheckings { get; set; }
-        public DbSet<CheckJob> CheckJobs { get; set; }
-        public DbSet<User> Users { get; set; }
+        //public DbSet<CheckJob> CheckJobs { get; set; }
+        //public DbSet<User> Users { get; set; }
     }
 }

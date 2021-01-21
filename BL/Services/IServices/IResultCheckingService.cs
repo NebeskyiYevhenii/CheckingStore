@@ -9,10 +9,10 @@ namespace BL.Services.IServices
 {
     public interface IResultCheckingService
     {
-        IEnumerable<ResultСheckingModel> GetAll();
-        IEnumerable<ResultСheckingModel> GetByCheckJobId(int CheckJobId);
-        ResultСheckingModel Create(ResultСheckingModel resultСhecking);
-        ResultСheckingModel Update(ResultСheckingModel resultСhecking);
+        IEnumerable<ResultСheckingBL> GetAll();
+        IEnumerable<ResultСheckingBL> GetByCheckJobId(int CheckJobId);
+        ResultСheckingBL Create(ResultСheckingBL resultСhecking);
+        ResultСheckingBL Update(ResultСheckingBL resultСhecking);
         void Delete(int id);
 
     }

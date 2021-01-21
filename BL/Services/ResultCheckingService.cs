@@ -13,26 +13,25 @@ namespace BL.Services
 {
     public class ResultCheckingService : IResultCheckingService
     {
-        private readonly ResultСheckingRepository _resultСheckingRepository;
+        private readonly ResultСheckingRepository _resultСheckingRepository = new ResultСheckingRepository();
         private readonly IMapper _mapper;
-        public ResultCheckingService(ResultСheckingRepository resultСheckingRepository)
+        public ResultCheckingService()
         {
             var mapperCofig = new MapperConfiguration(cgf =>
             {
-                cgf.CreateMap<ResultСheckingModel, ResultСhecking>().ReverseMap();
-                cgf.CreateMap<ResultСheckingModel, ResultСhecking>().ReverseMap();
+                cgf.CreateMap<ResultСheckingBL, ResultСhecking>().ReverseMap();
             });
 
             _mapper = new Mapper(mapperCofig);
-            _resultСheckingRepository = resultСheckingRepository;
+            //_resultСheckingRepository = resultСheckingRepository;
 
         }
 
-        public ResultСheckingModel Create(ResultСheckingModel resultСhecking)
+        public ResultСheckingBL Create(ResultСheckingBL resultСhecking)
         {
             var result = _mapper.Map<ResultСhecking>(resultСhecking);
             var create = _resultСheckingRepository.Create(result);
-            return _mapper.Map<ResultСheckingModel>(create);
+            return _mapper.Map<ResultСheckingBL>(create);
         }
 
         public void Delete(int id)
@@ -40,22 +39,22 @@ namespace BL.Services
             _resultСheckingRepository.Delete(id);
         }
 
-        public IEnumerable<ResultСheckingModel> GetAll()
+        public IEnumerable<ResultСheckingBL> GetAll()
         {
             var ResultСheckingAll = _resultСheckingRepository.GetAll();
-            return _mapper.Map<IEnumerable<ResultСheckingModel>>(ResultСheckingAll);
+            return _mapper.Map<IEnumerable<ResultСheckingBL>>(ResultСheckingAll);
         }
 
-        public IEnumerable<ResultСheckingModel> GetByCheckJobId(int CheckJobId)
+        public IEnumerable<ResultСheckingBL> GetByCheckJobId(int CheckJobId)
         {
             var ResultСheckings = _resultСheckingRepository.GetByCheckJobId(CheckJobId);
-            return _mapper.Map<IEnumerable<ResultСheckingModel>>(ResultСheckings);
+            return _mapper.Map<IEnumerable<ResultСheckingBL>>(ResultСheckings);
         }
 
-        public ResultСheckingModel Update(ResultСheckingModel resultСhecking)
+        public ResultСheckingBL Update(ResultСheckingBL resultСhecking)
         {
             var ResultСheckings = _resultСheckingRepository.Update(_mapper.Map<ResultСhecking>(resultСhecking));
-            return _mapper.Map<ResultСheckingModel>(ResultСheckings);
+            return _mapper.Map<ResultСheckingBL>(ResultСheckings);
         }
     }
 }
