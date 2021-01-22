@@ -174,6 +174,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ResultСheckingController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -247,6 +248,10 @@
     <Content Include="Views\ResultСhecking\Create.cshtml" />
     <Content Include="Views\ResultСhecking\Index.cshtml" />
     <Content Include="Views\ResultСhecking\Index2.cshtml" />
+    <Content Include="Views\ResultСhecking\Index3.cshtml" />
+    <Content Include="Views\ResultСhecking\Index1.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

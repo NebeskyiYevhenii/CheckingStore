@@ -17,6 +17,6 @@ namespace DAL.Models
         public DateTime UpdateDate { get; set; }
 
         public int CheckJobId { get; set; }
-        public CheckJobBL CheckJobModels { get; set; }
+        //public CheckJobBL CheckJobModels { get; set; }
     }
 }

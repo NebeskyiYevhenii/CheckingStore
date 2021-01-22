@@ -33,7 +33,32 @@ namespace CheckingStore.Controllers
             var ModelAll = _mapper.Map<IEnumerable<ResultСheckingModel>>(_resultCheckingService.GetAll());
             return View(ModelAll);
         }
+
+
+        public ActionResult Index1()
+        {
+            return View();
+        }
+
+
+
+
+
         public ActionResult Index2()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Check()
+        {
+            return RedirectToAction("Index3");
+        }
+
+
+
+
+        public ActionResult Index3()
         {
             return View();
         }
@@ -44,7 +69,13 @@ namespace CheckingStore.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult Create1()
+        {
+            return View("Create");
+        }
         // GET: ResultСhecking/Create
+        [HttpPost]
         public ActionResult Create(ResultСheckingModel resultСheckingModel)
         {
             ResultСheckingBL ModelBL = _resultCheckingService.Create(_mapper.Map<ResultСheckingBL>(resultСheckingModel));
