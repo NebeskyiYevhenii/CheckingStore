@@ -17,9 +17,9 @@ namespace DAL.Contexts
         //public CarWashContext(string connectionString) : base(connectionString)
         //{
         //}
-        public DbSet<ResultСhecking> ResultСheckings { get; set; }
+        public DbSet<ResultInspection> ResultСheckings { get; set; }
         //public DbSet<CheckJob> CheckJobs { get; set; }
-        //public DbSet<User> Users { get; set; }
+        public DbSet<User> Users { get; set; }
 
     }
 }

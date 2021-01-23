@@ -11,7 +11,7 @@ namespace CheckingStore.Controllers
 {
     public class UserController : Controller
     {
-        private readonly ResultCheckingService _resultCheckingService;
+        private readonly UserService _userService;
 
         private readonly IMapper _mapper;
         public UserController()
@@ -22,7 +22,7 @@ namespace CheckingStore.Controllers
             });
 
             _mapper = new Mapper(mapperCofig);
-            _resultCheckingService = new ResultCheckingService();
+            _userService = new UserService();
 
         }
 
@@ -30,7 +30,16 @@ namespace CheckingStore.Controllers
         [HttpPost]
         public ActionResult Authorization(string Email, string Password)
         {
-            return View("Index");
+            var user = _userService.Authorization(Email, Password);
+            if (user == null)
+            {
+                return View("Index");
+            }
+            else 
+            {
+                return RedirectToAction("Index2", "ResultСhecking");
+            }
+                
         }
 
 

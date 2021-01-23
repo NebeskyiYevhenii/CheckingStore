@@ -56,11 +56,16 @@
     <Compile Include="Interfaces\ICheckJob.cs" />
     <Compile Include="Interfaces\IResultСhecking.cs" />
     <Compile Include="Interfaces\IUser.cs" />
-    <Compile Include="Models\CheckJob.cs" />
-    <Compile Include="Models\ResultСhecking.cs" />
+    <Compile Include="Models\Inspection.cs" />
+    <Compile Include="Models\Inspection_TypeInspection.cs" />
+    <Compile Include="Models\ResultInspection.cs" />
+    <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\TypeInspection.cs" />
+    <Compile Include="Models\UserRole.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ResultСheckingRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

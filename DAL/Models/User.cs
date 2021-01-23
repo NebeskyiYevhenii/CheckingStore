@@ -9,12 +9,15 @@ namespace DAL.Models
     public class User
     {
         public int Id { get; set; }
-        public String Name { get; set; }
-        public String LastName { get; set; }
-        public String Email { get; set; }
-        public String Password { get; set; }
+        public string Name { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
 
-        public virtual ICollection<CheckJob> CheckJobs { get; set; }
+        public int UserRoleId { get; set; }
+        public UserRole UserRole { get; set; }
+
+        public virtual ICollection<Inspection> CheckJobs { get; set; }
 
     }
 }

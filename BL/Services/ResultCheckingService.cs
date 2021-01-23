@@ -19,7 +19,7 @@ namespace BL.Services
         {
             var mapperCofig = new MapperConfiguration(cgf =>
             {
-                cgf.CreateMap<ResultСheckingBL, ResultСhecking>().ReverseMap();
+                cgf.CreateMap<ResultСheckingBL, ResultInspection>().ReverseMap();
             });
 
             _mapper = new Mapper(mapperCofig);
@@ -29,7 +29,7 @@ namespace BL.Services
 
         public ResultСheckingBL Create(ResultСheckingBL resultСhecking)
         {
-            var result = _mapper.Map<ResultСhecking>(resultСhecking);
+            var result = _mapper.Map<ResultInspection>(resultСhecking);
             var create = _resultСheckingRepository.Create(result);
             return _mapper.Map<ResultСheckingBL>(create);
         }
@@ -53,7 +53,7 @@ namespace BL.Services
 
         public ResultСheckingBL Update(ResultСheckingBL resultСhecking)
         {
-            var ResultСheckings = _resultСheckingRepository.Update(_mapper.Map<ResultСhecking>(resultСhecking));
+            var ResultСheckings = _resultСheckingRepository.Update(_mapper.Map<ResultInspection>(resultСhecking));
             return _mapper.Map<ResultСheckingBL>(ResultСheckings);
         }
     }

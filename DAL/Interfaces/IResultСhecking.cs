@@ -9,10 +9,10 @@ namespace DAL.Interfaces
 {
     public interface IResultСhecking
     {
-        IEnumerable<ResultСhecking> GetAll();
-        IEnumerable<ResultСhecking> GetByCheckJobId(int CheckJobId);
-        ResultСhecking Create(ResultСhecking resultСhecking);
-        ResultСhecking Update(ResultСhecking resultСhecking);
+        IEnumerable<ResultInspection> GetAll();
+        IEnumerable<ResultInspection> GetByCheckJobId(int CheckJobId);
+        ResultInspection Create(ResultInspection resultСhecking);
+        ResultInspection Update(ResultInspection resultСhecking);
         void Delete(int id);
     }
 }

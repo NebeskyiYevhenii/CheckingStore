@@ -18,7 +18,7 @@ namespace DAL.Repositories
             _ctx = new MySQLContext();
         }
 
-        public ResultСhecking Create(ResultСhecking resultСhecking)
+        public ResultInspection Create(ResultInspection resultСhecking)
         {
             _ctx.ResultСheckings.Add(resultСhecking);
             _ctx.SaveChanges();
@@ -27,26 +27,26 @@ namespace DAL.Repositories
 
         public void Delete(int id)
         {
-            var entity = _ctx.ResultСheckings.FirstOrDefault(x => x.id == id);
+            var entity = _ctx.ResultСheckings.FirstOrDefault(x => x.Id == id);
 
             _ctx.ResultСheckings.Remove(entity);
 
             _ctx.SaveChanges();
         }
 
-        public IEnumerable<ResultСhecking> GetAll()
+        public IEnumerable<ResultInspection> GetAll()
         {
             return _ctx.ResultСheckings.ToList();
         }
 
-        public IEnumerable<ResultСhecking> GetByCheckJobId(int CheckJobId)
+        public IEnumerable<ResultInspection> GetByCheckJobId(int CheckJobId)
         {
             return _ctx.ResultСheckings.Where(x => x.CheckJobId == CheckJobId);
         }
 
-        public ResultСhecking Update(ResultСhecking resultСhecking)
+        public ResultInspection Update(ResultInspection resultСhecking)
         {
-            var entity = _ctx.ResultСheckings.FirstOrDefault(x => x.id == resultСhecking.id);
+            var entity = _ctx.ResultСheckings.FirstOrDefault(x => x.Id == resultСhecking.Id);
 
             entity.CheckCount = resultСhecking.CheckCount;
             entity.CheckDate = resultСhecking.CheckDate;
