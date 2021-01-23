@@ -10,18 +10,24 @@ namespace DAL.Repositories
 {
     public class UserRepository
     {
-        private readonly MySQLContext _ctx;
+        private readonly MSSQLContext _ctx;
 
         public UserRepository()
         {
-            _ctx = new MySQLContext();
+            _ctx = new MSSQLContext();
         }
 
 
         public IEnumerable<User> GetAll()
         {
-            return _ctx.Users.ToList();
+            var rez = _ctx.Users.ToList();
+            return rez;
         }
+        //public IEnumerable<User> GetAll()
+        //{
+        //    throw new NotImplementedException();
+        //}
+        
 
 
 

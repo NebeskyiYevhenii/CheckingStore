@@ -17,7 +17,7 @@ namespace DAL.Models
         public int UserRoleId { get; set; }
         public UserRole UserRole { get; set; }
 
-        public virtual ICollection<Inspection> CheckJobs { get; set; }
+        public ICollection<Inspection> Inspections { get; set; }
 
     }
 }

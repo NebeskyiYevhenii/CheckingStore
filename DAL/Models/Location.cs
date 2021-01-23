@@ -11,7 +11,7 @@ namespace DAL.Models
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public virtual ICollection<Inspection> Inspections { get; set; }
+        public ICollection<Inspection> Inspections { get; set; }
 
     }
 }

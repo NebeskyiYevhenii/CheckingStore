@@ -18,7 +18,8 @@ namespace BL.Services
         {
             var mapperCofig = new MapperConfiguration(cgf =>
             {
-                cgf.CreateMap<ResultСheckingBL, ResultInspection>().ReverseMap();
+                cgf.CreateMap<UserBL, User>().ReverseMap();
+
             });
 
             _mapper = new Mapper(mapperCofig);

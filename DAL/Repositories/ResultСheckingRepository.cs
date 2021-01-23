@@ -11,54 +11,79 @@ namespace DAL.Repositories
 {
     public class ResultСheckingRepository : IResultСhecking
     {
-        private readonly MySQLContext _ctx;
+        private readonly MSSQLContext _ctx;
 
         public ResultСheckingRepository()
         {
-            _ctx = new MySQLContext();
+            _ctx = new MSSQLContext();
         }
 
         public ResultInspection Create(ResultInspection resultСhecking)
         {
-            _ctx.ResultСheckings.Add(resultСhecking);
-            _ctx.SaveChanges();
-            return resultСhecking;
+            throw new NotImplementedException();
         }
 
         public void Delete(int id)
         {
-            var entity = _ctx.ResultСheckings.FirstOrDefault(x => x.Id == id);
-
-            _ctx.ResultСheckings.Remove(entity);
-
-            _ctx.SaveChanges();
+            throw new NotImplementedException();
         }
 
         public IEnumerable<ResultInspection> GetAll()
         {
-            return _ctx.ResultСheckings.ToList();
+            throw new NotImplementedException();
         }
 
         public IEnumerable<ResultInspection> GetByCheckJobId(int CheckJobId)
         {
-            return _ctx.ResultСheckings.Where(x => x.CheckJobId == CheckJobId);
+            throw new NotImplementedException();
         }
 
         public ResultInspection Update(ResultInspection resultСhecking)
         {
-            var entity = _ctx.ResultСheckings.FirstOrDefault(x => x.Id == resultСhecking.Id);
-
-            entity.CheckCount = resultСhecking.CheckCount;
-            entity.CheckDate = resultСhecking.CheckDate;
-            entity.CheckExpiryDate = resultСhecking.CheckExpiryDate;
-            entity.CheckJobId = resultСhecking.CheckJobId;
-            entity.CheckPrice = resultСhecking.CheckPrice;
-            entity.CreatDate = resultСhecking.CreatDate;
-
-            _ctx.SaveChanges();
-
-            return resultСhecking;
+            throw new NotImplementedException();
         }
+
+        //public ResultInspection Create(ResultInspection resultСhecking)
+        //{
+        //    _ctx.ResultСheckings.Add(resultСhecking);
+        //    _ctx.SaveChanges();
+        //    return resultСhecking;
+        //}
+
+        //public void Delete(int id)
+        //{
+        //    var entity = _ctx.ResultСheckings.FirstOrDefault(x => x.Id == id);
+
+        //    _ctx.ResultСheckings.Remove(entity);
+
+        //    _ctx.SaveChanges();
+        //}
+
+        //public IEnumerable<ResultInspection> GetAll()
+        //{
+        //    return _ctx.ResultСheckings.ToList();
+        //}
+
+        //public IEnumerable<ResultInspection> GetByCheckJobId(int CheckJobId)
+        //{
+        //    return _ctx.ResultСheckings.Where(x => x.CheckJobId == CheckJobId);
+        //}
+
+        //public ResultInspection Update(ResultInspection resultСhecking)
+        //{
+        //    var entity = _ctx.ResultСheckings.FirstOrDefault(x => x.Id == resultСhecking.Id);
+
+        //    entity.CheckCount = resultСhecking.CheckCount;
+        //    entity.CheckDate = resultСhecking.CheckDate;
+        //    entity.CheckExpiryDate = resultСhecking.CheckExpiryDate;
+        //    entity.CheckJobId = resultСhecking.CheckJobId;
+        //    entity.CheckPrice = resultСhecking.CheckPrice;
+        //    entity.CreatDate = resultСhecking.CreatDate;
+
+        //    _ctx.SaveChanges();
+
+        //    return resultСhecking;
+        //}
 
     }
 }

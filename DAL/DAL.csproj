@@ -52,7 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
-    <Compile Include="Contexts\MySQLContext.cs" />
+    <Compile Include="Contexts\MSSQLContext.cs" />
     <Compile Include="Interfaces\ICheckJob.cs" />
     <Compile Include="Interfaces\IResultСhecking.cs" />
     <Compile Include="Interfaces\IUser.cs" />
