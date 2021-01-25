@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DAL.Contexts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,8 +14,8 @@ namespace DAL.Models
         public string Article { get; set; }
         public DateTime CreatDate { get; set; }
 
-        public int Userid { get; set; }
-        public User User { get; set; }
+        public string UserId { get; set; }
+        public ApplicationUser User { get; set; }
 
         public int LocationId { get; set; }
         public Location Location { get; set; }

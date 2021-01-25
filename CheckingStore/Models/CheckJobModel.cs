@@ -19,8 +19,6 @@ namespace DAL.Models
         public DateTime CreatDate { get; set; }
         public DateTime UpdateDate { get; set; }
 
-        public int Userid { get; set; }
-        public UserModel User { get; set; }
 
         public virtual ICollection<ResultСheckingModel> ResultСheckingsModel { get; set; }
     }

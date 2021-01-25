@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace CheckingStore.Controllers
 {
+    [Authorize]
     public class ResultСheckingController : Controller
     {
         private readonly ResultCheckingService _resultCheckingService;

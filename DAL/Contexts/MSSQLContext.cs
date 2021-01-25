@@ -5,12 +5,28 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using DAL.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System.Security.Claims;
+using Microsoft.AspNet.Identity;
 
 namespace DAL.Contexts
 {
-    public class MSSQLContext : DbContext
+    public class ApplicationUser : IdentityUser
     {
-        public MSSQLContext() : base(@"UserDB")//DefaultConnection
+        public ICollection<Inspection> Inspections { get; set; }
+
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync
+        (UserManager<ApplicationUser> manager)
+        {
+            var userIdentity = await manager.CreateIdentityAsync(this,
+            DefaultAuthenticationTypes.ApplicationCookie);
+            return userIdentity;
+        }
+    }
+
+    public class MSSQLContext : IdentityDbContext<ApplicationUser>
+    {
+        public MSSQLContext() : base(@"DefaultConnection")//DefaultConnection
         {
 
         }
@@ -20,8 +36,16 @@ namespace DAL.Contexts
         public DbSet<Location> Locations { get; set; }
         public DbSet<ResultInspection> ResultInspections { get; set; }
         public DbSet<TypeInspection> TypeInspections { get; set; }
-        public DbSet<User> Users { get; set; }
-        public DbSet<UserRole> UserRoles { get; set; }
-        
+
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Inspection>()
+                .HasRequired(x => x.User)
+                .WithMany(x => x.Inspections)
+                .HasForeignKey(x => x.UserId);
+        }
     }
 }

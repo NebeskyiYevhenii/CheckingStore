@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace DAL.Repositories
 {
@@ -30,6 +31,7 @@ namespace DAL.Repositories
 
         public IEnumerable<ResultInspection> GetAll()
         {
+            var inspercions = _ctx.Inspections.Include(x => x.User).ToList();
             throw new NotImplementedException();
         }
 
