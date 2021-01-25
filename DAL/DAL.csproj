@@ -40,6 +40,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Oracle.ManagedDataAccess, Version=4.122.19.1, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <HintPath>..\packages\Oracle.ManagedDataAccess.19.10.1\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -53,6 +56,9 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Contexts\MSSQLContext.cs" />
+    <Compile Include="Contexts\OracleContext.cs" />
+    <Compile Include="Contexts\ShelfFillingContext.cs" />
+    <Compile Include="Contexts\ShelfEquipmentContext.cs" />
     <Compile Include="Interfaces\ICheckJob.cs" />
     <Compile Include="Interfaces\IResultСhecking.cs" />
     <Compile Include="Interfaces\IUser.cs" />
@@ -60,11 +66,17 @@
     <Compile Include="Models\Inspection_TypeInspection.cs" />
     <Compile Include="Models\ResultInspection.cs" />
     <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\ShelfFilling.cs" />
+    <Compile Include="Models\ShelfEquipment.cs" />
+    <Compile Include="Models\SMPRICE.cs" />
     <Compile Include="Models\TypeInspection.cs" />
     <Compile Include="Models\UserRole.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\OracleRepositories.cs" />
     <Compile Include="Repositories\ResultСheckingRepository.cs" />
+    <Compile Include="Repositories\ShelfFillingRepository.cs" />
+    <Compile Include="Repositories\ShelfEquipmentRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup />

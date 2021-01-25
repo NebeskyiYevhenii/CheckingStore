@@ -8,19 +8,18 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
-    public class UserRepository
+    public class OracleRepositories
     {
-        private readonly MSSQLContext _ctx;
+        private readonly OracleContext _ctx;
 
-        public UserRepository()
+        public OracleRepositories()
         {
-            _ctx = new MSSQLContext();
+            _ctx = new OracleContext();
         }
 
-
-        public IEnumerable<User> GetAll()
+        public IEnumerable<SMPRICE> GetAll()
         {
-            var rez = _ctx.Users.ToList();
+            var rez = _ctx.SMPRICES.ToList();
             return rez;
         }
     }
