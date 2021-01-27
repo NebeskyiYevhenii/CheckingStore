@@ -88,6 +88,8 @@
     <Compile Include="Models\SMPRICE.cs" />
     <Compile Include="Models\TypeInspection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\GenericRepository.cs" />
+    <Compile Include="Repositories\IGenericRepository.cs" />
     <Compile Include="Repositories\OracleRepositories.cs" />
     <Compile Include="Repositories\ResultСheckingRepository.cs" />
     <Compile Include="Repositories\ShelfFillingRepository.cs" />

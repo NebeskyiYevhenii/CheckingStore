@@ -36,7 +36,7 @@ namespace DAL.Contexts
         public DbSet<Location> Locations { get; set; }
         public DbSet<ResultInspection> ResultInspections { get; set; }
         public DbSet<TypeInspection> TypeInspections { get; set; }
-
+           
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
