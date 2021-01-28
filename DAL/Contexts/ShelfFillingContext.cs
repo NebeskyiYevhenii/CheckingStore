@@ -33,6 +33,7 @@ namespace DAL.Contexts
             shelfFilling.Number_in_width = Convert.ToString(values[7]);
             shelfFilling.Number_in_height = Convert.ToString(values[8]);
             shelfFilling.Number_in_depth = Convert.ToString(values[9]);
+
             return shelfFilling;
         }
     }

@@ -12,8 +12,8 @@ namespace DAL.Repositories
     public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
     {
 
-        internal MSSQLContext Context;
-        internal DbSet<TEntity> DbSet;
+        protected MSSQLContext Context;
+        protected DbSet<TEntity> DbSet;
 
         public GenericRepository(MSSQLContext context)
         {
@@ -35,12 +35,13 @@ namespace DAL.Repositories
             DbSet.Remove(entityToDelete);
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public virtual IEnumerable<TEntity> GetAll()
         {
-            return DbSet.ToList<TEntity>();
+            var rez = DbSet.ToList<TEntity>();
+            return rez;
         }
 
-        public void Insert(TEntity entity)
+        public virtual void Insert(TEntity entity)
         {
             DbSet.Add(entity);
         }
@@ -50,7 +51,7 @@ namespace DAL.Repositories
         //    return DbSet.Find(id);
         //}
 
-        public IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> exception)
+        public virtual IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> exception)
         {
             return DbSet.Where(exception).ToList();
         }

@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Models
+namespace BL.Models
 {
-    public class Inspection
-   {
+    public class InspectionBL
+    {
         public int Id { get; set; }
         public DateTime CheckDate { get; set; }
         public string Article { get; set; }
@@ -18,7 +18,7 @@ namespace DAL.Models
         public ApplicationUser User { get; set; }
 
         public int LocationId { get; set; }
-        public Location Location { get; set; }
+        public LocationBL Location { get; set; }
 
         //public ICollection<Inspection_TypeInspection> Inspection_TypeInspections { get; set; }
     }

@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace DAL.Repositories
 {
-    public class ShelfEquipmentRepository
+    public class ShelfEquipmentRepository 
     {
         private readonly ShelfEquipmentContext _ctx;
 

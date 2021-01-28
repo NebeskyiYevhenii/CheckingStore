@@ -17,6 +17,6 @@ namespace CheckingStore.Models
         public DateTime UpdateDate { get; set; }
 
         public int CheckJobId { get; set; }
-        //public CheckJobModel CheckJobModels { get; set; }
+        public CheckJobModel CheckJobs { get; set; }
     }
 }
