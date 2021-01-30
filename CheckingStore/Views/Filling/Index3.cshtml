@@ -1,0 +1,58 @@
+﻿<link href="@Url.Content("~/Content/MyStyle.css")" rel="stylesheet" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>@ViewBag.Title - Проверка магазина</title>
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+
+@{
+    ViewBag.Title = "Index3";
+}
+
+<body style="background-color:cornflowerblue; padding-top:50px;">
+    <div class="container">
+        <div class="row text-center">
+            <a href="@Html.ActionLink("Index2", "Filling", new { LocationId = @ViewData["LocationId"] })">
+                Назад
+            </a>
+        </div>
+        <div class="row text-center">
+            <div class="col-lg-3">
+
+            </div>
+            <div class="col-lg-6">
+                <h2>@ViewData["Equipment"]@*@User.Identity.Name*@</h2>
+            </div>
+            <div class="col-lg-3">
+
+            </div>
+
+        </div>
+        <div class="row text-center" id="Location">
+
+            <div class="col-lg-4">
+
+            </div>
+            <div class="col-lg-4">
+
+                @foreach (var article in ViewBag.Articles)
+                {
+                    <p>
+                        <a href="@Url.Action("Index4","Filling",new {LocationId = @ViewData["LocationId"], Equipment = ViewData["Equipment"], Article = article})">
+                            <div type="button" value="@article" class="btn btn-info btn-lg btn-block">
+                                @article
+                            </div>
+                        </a>
+                    </p>
+                }
+
+            </div>
+            <div class="col-lg-4">
+
+            </div>
+
+        </div>
+    </div>
+
+</body>

@@ -22,17 +22,17 @@ namespace DAL.Contexts
         {
             string[] values = csvLine.Split('|');
             ShelfFilling shelfFilling = new ShelfFilling();
-            shelfFilling.Store_ID = Convert.ToString(values[0]);
-            shelfFilling.Hardware_id = Convert.ToString(values[1]);
-            shelfFilling.Equipment_Name = Convert.ToString(values[2]);
-            shelfFilling.Shelf_ID = Convert.ToString(values[3]);
-            shelfFilling.Shelf_number = Convert.ToString(values[4]);
-            shelfFilling.Article_Nomenclature = Convert.ToString(values[5]);
-            shelfFilling.Product_id = Convert.ToString(values[6]);
-            shelfFilling.Number_on_the_shelf = Convert.ToString(values[6]);
-            shelfFilling.Number_in_width = Convert.ToString(values[7]);
-            shelfFilling.Number_in_height = Convert.ToString(values[8]);
-            shelfFilling.Number_in_depth = Convert.ToString(values[9]);
+            shelfFilling.LocationId = Convert.ToInt32(values[0]);
+            shelfFilling.HardwareId = Convert.ToString(values[1]);
+            shelfFilling.EquipmentName = Convert.ToString(values[2]);
+            shelfFilling.ShelfId = Convert.ToString(values[3]);
+            shelfFilling.ShelfNumber = Convert.ToString(values[4]);
+            shelfFilling.Article = Convert.ToString(values[5]);
+            shelfFilling.ProductId = Convert.ToString(values[6]);
+            shelfFilling.NumberOnTheShelf = Convert.ToInt32(values[6]);//.ToString(values[6]);
+            shelfFilling.NumberInWidth = Convert.ToInt32(values[7]);
+            shelfFilling.NumberInHeight = Convert.ToInt32(values[8]);
+            shelfFilling.NumberInDepth = Convert.ToInt32(values[9]);
 
             return shelfFilling;
         }

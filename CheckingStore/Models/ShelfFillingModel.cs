@@ -1,9 +1,9 @@
-﻿using BL.Models;
+﻿using CheckingStore.Models;
 using System;
 
 namespace DAL.Models
 {
-    public class ShelfFillingBL
+    public class ShelfFillingModel
     {
         public int Id { get; set; }
 
@@ -19,6 +19,6 @@ namespace DAL.Models
         public int NumberInDepth { get; set; }
 
         public int LocationId { get; set; }
-        public LocationBL Location { get; set; }
+        public LocationModel Location { get; set; }
     }
 }

@@ -36,6 +36,7 @@ namespace DAL.Contexts
         public DbSet<Location> Locations { get; set; }
         public DbSet<ResultInspection> ResultInspections { get; set; }
         public DbSet<TypeInspection> TypeInspections { get; set; }
+        public DbSet<ShelfFilling> ShelfFillings { get; set; }
            
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -46,6 +47,11 @@ namespace DAL.Contexts
                 .HasRequired(x => x.User)
                 .WithMany(x => x.Inspections)
                 .HasForeignKey(x => x.UserId);
+
+            modelBuilder.Entity<ShelfFilling>()
+                .HasRequired(x => x.Location)
+                .WithMany(x => x.ShelfFillings)
+                .HasForeignKey(x => x.LocationId);
         }
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace DAL.Models
 {
     public class Inspection
-   {
+    {
         public int Id { get; set; }
         public DateTime CheckDate { get; set; }
         public string Article { get; set; }

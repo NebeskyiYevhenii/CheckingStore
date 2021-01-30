@@ -78,6 +78,14 @@
     <Compile Include="Migrations\202101251910006_Add_userid_to_inspection.designer.cs">
       <DependentUpon>202101251910006_Add_userid_to_inspection.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202101291308285_Adding_SMLocId_and_ShelfLocId_Fields_to_the_Location_Model.cs" />
+    <Compile Include="Migrations\202101291308285_Adding_SMLocId_and_ShelfLocId_Fields_to_the_Location_Model.designer.cs">
+      <DependentUpon>202101291308285_Adding_SMLocId_and_ShelfLocId_Fields_to_the_Location_Model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101301000486_Add_table_SelfFillings.cs" />
+    <Compile Include="Migrations\202101301000486_Add_table_SelfFillings.designer.cs">
+      <DependentUpon>202101301000486_Add_table_SelfFillings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Inspection.cs" />
     <Compile Include="Models\Inspection_TypeInspection.cs" />
@@ -111,6 +119,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202101251910006_Add_userid_to_inspection.resx">
       <DependentUpon>202101251910006_Add_userid_to_inspection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101291308285_Adding_SMLocId_and_ShelfLocId_Fields_to_the_Location_Model.resx">
+      <DependentUpon>202101291308285_Adding_SMLocId_and_ShelfLocId_Fields_to_the_Location_Model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101301000486_Add_table_SelfFillings.resx">
+      <DependentUpon>202101301000486_Add_table_SelfFillings.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

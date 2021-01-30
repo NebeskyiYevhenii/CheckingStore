@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
-    public interface IInspectionRepository : IGenericRepository<Inspection>
+    public interface IInspectionRepository// : IGenericRepository<Inspection>
     {
         IEnumerable<Inspection> GetByUserId(string userId);
     } 

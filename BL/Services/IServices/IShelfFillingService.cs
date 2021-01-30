@@ -7,8 +7,12 @@ using System.Threading.Tasks;
 
 namespace BL.Services.IServices
 {
-    public interface IShelfFillingService
+    public interface IShelfFillingService //: IGenericService<ShelfFilling>
     {
-        IEnumerable<ShelfFillingBL> GetAll();
+        //IEnumerable<ShelfFillingBL> GetAll();
+        IEnumerable<ShelfFilling> GetEquipmentByLocationArticle(int locationId, string Article);
+        IEnumerable<ShelfFillingBL> GetEquipmentByUserIdLocId(string userId, int LocId);
+        IEnumerable<ShelfFillingBL> GetFillingByInspections(IEnumerable<Inspection> inspections);
+        IEnumerable<ShelfFillingBL> GetEquipmentByUserIdLocIdEquipment(string userId, int LocId, string equipment);
     }
 }

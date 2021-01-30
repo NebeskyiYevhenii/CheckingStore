@@ -4,53 +4,76 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
-    public class ShelfFillingRepository : IShelfFillingRepository
+    public class ShelfFillingRepository : GenericRepository<ShelfFilling>, IShelfFillingRepository
     {
-        public List<ShelfFilling> _shelfFillings = new List<ShelfFilling>();
-
-        public ShelfFillingRepository()
+        public ShelfFillingRepository(MSSQLContext context) : base(context)
         {
-            _shelfFillings = File.ReadAllLines("http://share.abmretail.com/basket/Filling.csv").Skip(1)
-                                           .Select(v => ShelfFillingContext.FromCsvFilling(v))
-                                           .ToList();
+            //_shelfFillingRepository = shelfFillingRepository;
+            Context = context;
+            DbSet = context.Set<ShelfFilling>();
         }
 
+        //private readonly GenericRepository<ShelfFilling> _genericRepository = new GenericRepository<ShelfFilling>(new MSSQLContext());
+        //public List<ShelfFilling> _shelfFillings = new List<ShelfFilling>();
 
-        public static ShelfFilling FromCsvFilling(string csvLine)
+
+
+        //public IEnumerable<ShelfFilling> GetAll()
+        //{
+        //    var rez = DbSet.ToList();
+        //    return rez;
+        //}
+
+        public IEnumerable<ShelfFilling> GetEquipmentByLocation(int locationId)
         {
-            string[] values = csvLine.Split('|');
-            ShelfFilling shelfFilling = new ShelfFilling();
-            shelfFilling.Store_ID = Convert.ToString(values[0]);
-            shelfFilling.Hardware_id = Convert.ToString(values[1]);
-            shelfFilling.Equipment_Name = Convert.ToString(values[2]);
-            shelfFilling.Shelf_ID = Convert.ToString(values[3]);
-            shelfFilling.Shelf_number = Convert.ToString(values[4]);
-            shelfFilling.Article_Nomenclature = Convert.ToString(values[5]);
-            shelfFilling.Product_id = Convert.ToString(values[6]);
-            shelfFilling.Number_on_the_shelf = Convert.ToString(values[6]);
-            shelfFilling.Number_in_width = Convert.ToString(values[7]);
-            shelfFilling.Number_in_height = Convert.ToString(values[8]);
-            shelfFilling.Number_in_depth = Convert.ToString(values[9]);
-
-            return shelfFilling;
-        }
-
-
-        public IEnumerable<ShelfFilling> GetAll()
-        {
-            var rez = _shelfFillings.ToList();
-            return rez;
-        }
-
-        public IEnumerable<ShelfFilling> GetGroupEquipmentByLocation(string lokationId)
-        {
-            return _shelfFillings.Where(x => x.Store_ID == lokationId)
+            //var shelfLocationId = _genericRepository.GetAll().FirstOrDefault(x => x.Id == locationId);
+            
+            return DbSet
+                .Where(x => x.LocationId == locationId)
                 .ToList();
+        }
+
+        public IEnumerable<ShelfFilling> GetFillingByLocationArticle(int locationId, string Article)
+        {
+           //var shelfLocationId = _genericRepository.GetAll().FirstOrDefault(x => x.Id == locationId);
+
+            return DbSet
+                .Where(x => x.LocationId == locationId && x.Article == Article)
+                .ToList();
+        } 
+        
+        
+        public IEnumerable<ShelfFilling> GetFillingByInspection(Inspection inspection)
+        {
+            //var shelfLocationId = _genericRepository.GetAll().FirstOrDefault(x => x.Id == inspection.LocationId);
+
+            return DbSet
+                .Where(x => x.LocationId == inspection.LocationId && x.Article == inspection.Article)
+                .ToList();
+        }        
+        public IEnumerable<ShelfFilling> GetFillingByInspections(IEnumerable<Inspection> inspections)
+        {
+            //var LocationId = inspections.Select(x => x.LocationId).FirstOrDefault();
+            //var shelfLocationId = _genericRepository.GetAll().FirstOrDefault(x => x.Id == LocationId);
+
+            List<ShelfFilling> rez = new List<ShelfFilling>();
+
+            foreach (var inspection in inspections)
+            {
+                var rez1 = DbSet
+                    .Where(x => x.Article == inspection.Article && x.LocationId == inspection.Location.SMLocId)
+                    .FirstOrDefault();
+                if (rez1 != null)
+                    rez.Add(rez1);
+            }
+
+            return rez;
         }
     }
 }

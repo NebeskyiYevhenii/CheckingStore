@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
-    public interface IShelfFillingRepository
+    public interface IShelfFillingRepository// : IGenericRepository<ShelfFilling>
     {
-        IEnumerable<ShelfFilling> GetAll();
-        IEnumerable<ShelfFilling> GetGroupEquipmentByLocation(string lokationId);
+        //IEnumerable<ShelfFilling> GetAll();
+        IEnumerable<ShelfFilling> GetEquipmentByLocation(int lokationId);
+        IEnumerable<ShelfFilling> GetFillingByLocationArticle(int locationId, string Article);
+        IEnumerable<ShelfFilling> GetFillingByInspections(IEnumerable<Inspection> inspections);
     }
 }

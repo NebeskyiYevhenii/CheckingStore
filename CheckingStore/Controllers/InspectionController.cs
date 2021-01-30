@@ -45,10 +45,17 @@ namespace CheckingStore.Controllers
             if (claimsIdentity == null)
                 throw new HttpRequestValidationException("U must be logged in");
 
+            //string email = this.user.FindFirstValue(ClaimTypes.Email);
+            //string email = System.Security.Claims.ClaimsPrincipal.Current.Identity.Name;
+            //string userId = System.Security.Claims.ClaimsPrincipal.Current.FindFirst(ClaimTypes.Email).Value;
+
+            //var userId = ClaimsIdentity.DefaultNameClaimType;
             var userId = claimsIdentity.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
-            var rez = _inspectionService.GetAllLocationByUser("3e1174e2-098a-454b-a141-9c5867eec9ea");
+            var rez = _inspectionService.GetAllLocationByUser(userId);
 
             var models = _mapper.Map<IEnumerable<LocationModel>>(rez);
+
+
 
             return View(models);
         }

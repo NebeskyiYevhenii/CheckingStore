@@ -33,7 +33,7 @@
 
             </div>
             <div class="col-lg-4">
-                @using (Html.BeginForm("Index", "Location"))
+                @*@using (Html.BeginForm("Index", "Location"))
                 {
                     foreach (var item in Model)
                     {
@@ -42,12 +42,12 @@
                         </p>
 
                     }
-                }
+                }*@
 
                 @foreach (var item in Model)
                 {
                     <p>
-                        <a href="@Url.Action("CONTROLLER NAME","ACTION NAME",new { LocationId = item.Id})">
+                        <a href="@Url.Action("Index2","Filling",new { LocationId = item.Id})">
                             <div type="button" value="@item.Name" class="btn btn-info btn-lg btn-block">
                                 @item.Name
                             </div>

@@ -126,7 +126,9 @@ namespace BL.Services
 
         Location IGenericService<Location>.GetById(int id)
         {
-            throw new NotImplementedException();
+            var rez = _locationRepository.Get(x => x.Id == id).FirstOrDefault();
+            return rez;
+            //throw new NotImplementedException();
         }
     }
 }
