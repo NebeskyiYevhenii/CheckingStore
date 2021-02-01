@@ -12,9 +12,9 @@ namespace BL.Services.IServices
 {
     public class InspectionService : IInspectionService
     {
-        private readonly IInspectionRepository _inspectionRepository;
+        private readonly InspectionRepository _inspectionRepository;
         private readonly IMapper _mapper;
-        public InspectionService(IInspectionRepository inspectionRepository)
+        public InspectionService(InspectionRepository inspectionRepository)
         {
             var mapperCofig = new MapperConfiguration(cgf =>
             {
@@ -28,6 +28,17 @@ namespace BL.Services.IServices
 
             _inspectionRepository = inspectionRepository;
         }
+
+        public InspectionBL GetByLocationIdArticleUserId(int LocationId, string Article, string userId)
+        {
+            var inspection = _inspectionRepository
+                .GetByUserId(userId)
+                .Where(x => x.LocationId == LocationId && x.Article == Article)
+                .FirstOrDefault();
+            return _mapper.Map<InspectionBL>(inspection);
+
+        }
+
         public IEnumerable<LocationBL> GetAllLocationByUser(string userId)
         {
             var locations = _inspectionRepository.GetByUserId(userId)
@@ -36,5 +47,9 @@ namespace BL.Services.IServices
 
             return _mapper.Map<IEnumerable<LocationBL>>(locations);
         }
+
+
+
+
     }
 }

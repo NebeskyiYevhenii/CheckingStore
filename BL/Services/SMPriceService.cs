@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BL.Models;
+using BL.Services.IServices;
 using DAL.Models;
 using DAL.Repositories;
 using System;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace BL.Services
 {
-    public class SMPriceService
+    public class SMPriceService : ISMPriceService
     {
         private readonly OracleRepositories _oracleRepositories;
         private readonly IMapper _mapper;
@@ -29,15 +30,11 @@ namespace BL.Services
             _oracleRepositories = oracleRepositories;
         }
 
-        public SMPriceBL GetByArticleLocation (string Article, string Location)
+        public SMPriceBL GetByArticleLocation (string Article, int LocationId)
         {
-            var rez = _mapper.Map<SMPriceBL>(_oracleRepositories.GetAll().FirstOrDefault(x => x.ARTICLE == Article && x.STORELOC == Location));
+            var rez = _mapper.Map<SMPriceBL>(_oracleRepositories.GetAll().FirstOrDefault(x => x.ARTICLE == Article && x.STORELOC == LocationId.ToString()));
             return rez;
         }
-
-
-
-
 
     }
 }

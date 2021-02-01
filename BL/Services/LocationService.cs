@@ -31,7 +31,14 @@ namespace BL.Services
         }
 
 
+        //public IEnumerable<LocationBL> GetAllLocationByUser(string userId)
+        //{
+        //    var locations = _locationRepository.GetByUserId(userId)
+        //        .Select(x => x.Location)
+        //        .Distinct();
 
+        //    return _mapper.Map<IEnumerable<LocationBL>>(locations);
+        //}
 
         public bool Delete(LocationBL item)
         {

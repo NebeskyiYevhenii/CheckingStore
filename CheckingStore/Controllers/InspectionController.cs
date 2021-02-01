@@ -56,7 +56,7 @@ namespace CheckingStore.Controllers
             var models = _mapper.Map<IEnumerable<LocationModel>>(rez);
 
 
-
+            ViewData["userId"] = userId;
             return View(models);
         }
 

@@ -37,8 +37,10 @@ namespace DAL.Repositories
 
         public virtual IEnumerable<TEntity> GetAll()
         {
+
+
             var rez = DbSet.ToList<TEntity>();
-            return rez;
+            return rez; 
         }
 
         public virtual void Insert(TEntity entity)

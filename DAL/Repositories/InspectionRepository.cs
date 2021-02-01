@@ -23,5 +23,10 @@ namespace DAL.Repositories
                 .Include(x=>x.Location)
                 .ToList();
         }
+
+        IEnumerable<ResultInspection> IInspectionRepository.GetByUserId(string userId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

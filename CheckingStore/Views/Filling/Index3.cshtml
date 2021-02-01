@@ -13,9 +13,7 @@
 <body style="background-color:cornflowerblue; padding-top:50px;">
     <div class="container">
         <div class="row text-center">
-            <a href="@Html.ActionLink("Index2", "Filling", new { LocationId = @ViewData["LocationId"] })">
-                Назад
-            </a>
+            @Html.ActionLink("Назад", "Index2", new { LocationId = @ViewData["LocationId"], u = @ViewData["userId"] })
         </div>
         <div class="row text-center">
             <div class="col-lg-3">
@@ -39,7 +37,7 @@
                 @foreach (var article in ViewBag.Articles)
                 {
                     <p>
-                        <a href="@Url.Action("Index4","Filling",new {LocationId = @ViewData["LocationId"], Equipment = ViewData["Equipment"], Article = article})">
+                        <a href="@Url.Action("Index4","Filling",new {LocationId = @ViewData["LocationId"], Equipment = ViewData["Equipment"], Article = article, u = @ViewData["userId"]})">
                             <div type="button" value="@article" class="btn btn-info btn-lg btn-block">
                                 @article
                             </div>

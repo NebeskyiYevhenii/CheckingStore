@@ -20,6 +20,6 @@ namespace DAL.Models
         public int LocationId { get; set; }
         public Location Location { get; set; }
 
-        //public ICollection<Inspection_TypeInspection> Inspection_TypeInspections { get; set; }
+        public ICollection<Inspection_TypeInspection> Inspection_TypeInspections { get; set; }
     }
 }

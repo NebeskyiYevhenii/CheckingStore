@@ -1,6 +1,14 @@
 ﻿body {
     margin-top: 50px;
-    background-color: cadetblue;
+    background-color: darkgray;
+}
+
+#TypeInspection {
+    padding: 20px; /* Поля */
+    background-color: blue; /* Цвет фона */
+    border: 2px; /*solid #E81E25;*/ /* Параметры рамки */
+    border-radius: 50px;
+    color:black
 }
 #Location {
     padding-right: 10px;

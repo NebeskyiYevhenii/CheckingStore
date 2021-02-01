@@ -4,15 +4,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DAL.Models
 {
-    public class ResultInspection
+    public class ResultInspectionModel
     {
-        //[Key]
-        //[ForeignKey("Inspection_TypeInspection")]
+        [Key]
+        [ForeignKey("Inspection_TypeInspection")]
         public int Id { get; set; }
         public bool IsValid { get; set; }
         public DateTime CreatDate { get; set; }
 
-        public int Inspection_TypeInspectionsId { get; set; }
-        public Inspection_TypeInspection Inspection_TypeInspections { get; set; }
+        public Inspection_TypeInspectionModel Inspection_TypeInspection { get; set; }
     }
 }
