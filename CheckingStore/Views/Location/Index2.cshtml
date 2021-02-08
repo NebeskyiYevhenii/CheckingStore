@@ -5,6 +5,8 @@
 <title>@ViewBag.Title - Проверка магазина</title>
 @Styles.Render("~/Content/css")
 @Scripts.Render("~/bundles/modernizr")
+@Scripts.Render("~/scripts/jquery-3.4.1.js")
+@Scripts.Render("~/scripts/jquery.unobtrusive-ajax.js")
 
 @{
     ViewBag.Title = "Index2";
@@ -13,7 +15,7 @@
 <body style="background-color:cornflowerblue; padding-top:50px;">
     <div class="container">
         <div class="row text-center">
-            @Html.ActionLink("Назад","Index", "Inspection")
+            @Html.ActionLink("Назад", "Index", "Filling")
         </div>
         <div class="row text-center">
             <div class="col-lg-3">
@@ -28,7 +30,6 @@
 
         </div>
         <div class="row text-center" id="Location">
-
             <div class="col-lg-4">
 
             </div>
@@ -37,7 +38,7 @@
                 @foreach (var Equipment in ViewBag.Equipments)
                 {
                     <p>
-                        <a href="@Url.Action("Index3","Filling",new {LocationId = @ViewData["LocationId"], Equipment = Equipment, u = @ViewData["userId"]})">
+                        <a href="@Url.Action("Index3","Location",new {LocationId = @ViewData["LocationId"], Equipment = Equipment, u = @ViewData["userId"]})">
                             <div type="button" value="@Equipment" class="btn btn-info btn-lg btn-block">
                                 @Equipment
                             </div>
@@ -46,6 +47,9 @@
                 }
 
             </div>
+            <br>LocationId: @ViewData["LocationId"]
+            <br>Equipment: @ViewData["Equipment"]
+            <br>userId: @ViewData["userId"]
             <div class="col-lg-4">
 
             </div>

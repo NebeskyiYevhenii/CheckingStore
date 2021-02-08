@@ -47,7 +47,7 @@
                 @foreach (var item in Model)
                 {
                     <p>
-                        <a href="@Url.Action("Index2","Filling",new { LocationId = item.Id, u = @ViewData["userId"]})">
+                        <a href="@Url.Action("Index2","Location",new { LocationId = item.Id, u = @ViewData["userId"]})">
                             <div type="button" value="@item.Name" class="btn btn-info btn-lg btn-block">
                                 @item.Name
                             </div>

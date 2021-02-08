@@ -2,7 +2,13 @@
     margin-top: 50px;
     background-color: darkgray;
 }
-
+#TypeInspection1 {
+    padding: 5px; /* Поля */
+    background-color:darkcyan; /* Цвет фона */
+    border: 2px; /*solid #E81E25;*/ /* Параметры рамки */
+    border-radius: 50px;
+    color: black
+}
 #TypeInspection {
     padding: 20px; /* Поля */
     background-color: blue; /* Цвет фона */
@@ -10,6 +16,8 @@
     border-radius: 50px;
     color:black
 }
+
+
 #Location {
     padding-right: 10px;
     margin-top: 50px;
@@ -24,3 +32,63 @@ h2 {
 button {
     border-radius: 12px;
 }
+
+
+
+
+
+/* Button 11 */
+#button-11 {
+    overflow: visible;
+}
+
+    #button-11 .knobs {
+        perspective: 70px;
+    }
+
+        #button-11 .knobs:before, #button-11 .knobs:after, #button-11 .knobs span {
+            position: absolute;
+            top: 4px;
+            border-radius: 2px;
+        }
+
+        #button-11 .knobs:before, #button-11 .knobs:after {
+            width: 20px;
+            height: 10px;
+            color: #4e4e4e;
+            font-size: 10px;
+            font-weight: bold;
+            text-align: center;
+            line-height: 1;
+            padding: 9px 4px;
+        }
+
+        #button-11 .knobs:before {
+            content: 'YES';
+            left: 4px;
+        }
+
+        #button-11 .knobs:after {
+            content: 'NO';
+            right: 4px;
+        }
+
+        #button-11 .knobs span {
+            right: 4px;
+            width: 33px;
+            height: 28px;
+            background-color: #03a9f4;
+            transform: rotateY(0);
+            transform-origin: 0% 50%;
+            transition: 0.6s ease all;
+            z-index: 1;
+        }
+
+    #button-11 .checkbox:checked + .knobs span {
+        transform: rotateY(-180deg);
+        background-color: #f44336;
+    }
+
+    #button-11 .checkbox:checked ~ .layer {
+        background-color: #fcebeb;
+    }

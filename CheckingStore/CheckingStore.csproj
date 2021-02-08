@@ -193,7 +193,8 @@
     <Compile Include="Controllers\InspectionController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\ResultСheckingController.cs" />
+    <Compile Include="Controllers\ResultInspectionController.cs" />
+    <Compile Include="Controllers\SMPriceController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -205,7 +206,6 @@
     <Compile Include="Models\LocationModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ResultInspectionModel.cs" />
-    <Compile Include="Models\ResultСheckingModel.cs" />
     <Compile Include="Models\ShelfFillingModel.cs" />
     <Compile Include="Models\SMPriceModel.cs" />
     <Compile Include="Models\TypeInspectionModel.cs" />
@@ -231,6 +231,8 @@
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -270,19 +272,14 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\ResultСhecking\Create.cshtml" />
-    <Content Include="Views\ResultСhecking\Index.cshtml" />
-    <Content Include="Views\ResultСhecking\Index2.cshtml" />
-    <Content Include="Views\ResultСhecking\Index3.cshtml" />
-    <Content Include="Views\ResultСhecking\Index1.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
-    <Content Include="Views\Location\Index.cshtml" />
     <Content Include="Views\Inspection\Index.cshtml" />
-    <Content Include="Views\Filling\Index2.cshtml" />
-    <Content Include="Views\Filling\Index3.cshtml" />
-    <Content Include="Views\Filling\Index4.cshtml" />
+    <Content Include="Views\Location\Index2.cshtml" />
+    <Content Include="Views\Location\Index3.cshtml" />
     <Content Include="Views\Filling\Index.cshtml" />
+    <Content Include="Views\SMPrice\Index4.cshtml" />
+    <Content Include="Views\ResultInspection\RecordResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

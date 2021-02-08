@@ -37,7 +37,7 @@
                 @foreach (var article in ViewBag.Articles)
                 {
                     <p>
-                        <a href="@Url.Action("Index4","Filling",new {LocationId = @ViewData["LocationId"], Equipment = ViewData["Equipment"], Article = article, u = @ViewData["userId"]})">
+                        <a href="@Url.Action("Index4","SMPrice",new {LocationSMLocId = @ViewData["SMLocId"], LocationId = @ViewData["LocationId"], Equipment = ViewData["Equipment"], Article = article, u = @ViewData["userId"]})">
                             <div type="button" value="@article" class="btn btn-info btn-lg btn-block">
                                 @article
                             </div>
@@ -46,6 +46,10 @@
                 }
 
             </div>
+            <br>LocationId: @ViewData["LocationId"]
+            <br>LocationSMLocId: @ViewData["SMLocId"]
+            <br>Equipment: @ViewData["Equipment"]
+            <br>userId: @ViewData["userId"]
             <div class="col-lg-4">
 
             </div>

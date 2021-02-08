@@ -11,7 +11,7 @@ namespace BL.Services.IServices
     {
         IEnumerable<ResultСheckingBL> GetAll();
         IEnumerable<ResultСheckingBL> GetByCheckJobId(int CheckJobId);
-        ResultСheckingBL Create(ResultСheckingBL resultСhecking);
+        void Create(ResultСheckingBL resultСhecking);
         ResultСheckingBL Update(ResultСheckingBL resultСhecking);
         void Delete(int id);
 

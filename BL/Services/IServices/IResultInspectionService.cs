@@ -11,8 +11,6 @@ namespace BL.Services.IServices
     public interface IResultInspectionService
     {
         IEnumerable<ResultInspectionBL> GetAll();
-        //IGrouping<int, InspectionBL> GetAllLocationByUser(string UserId);
-
-
+        void Create(ResultInspectionBL resultInspectionBL);
     }
 }

@@ -40,7 +40,7 @@ namespace CheckingStore.Controllers
         // GET: Inspection
         public ActionResult Index()
         {
-            var claimsIdentity = User.Identity as ClaimsIdentity;
+            ClaimsIdentity claimsIdentity = User.Identity as ClaimsIdentity;
 
             if (claimsIdentity == null)
                 throw new HttpRequestValidationException("U must be logged in");
@@ -50,10 +50,10 @@ namespace CheckingStore.Controllers
             //string userId = System.Security.Claims.ClaimsPrincipal.Current.FindFirst(ClaimTypes.Email).Value;
 
             //var userId = ClaimsIdentity.DefaultNameClaimType;
-            var userId = claimsIdentity.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
-            var rez = _inspectionService.GetAllLocationByUser(userId);
+            string userId = claimsIdentity.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
+            IEnumerable<LocationBL> rez = _inspectionService.GetAllLocationByUser(userId);
 
-            var models = _mapper.Map<IEnumerable<LocationModel>>(rez);
+            IEnumerable<LocationModel> models = _mapper.Map<IEnumerable<LocationModel>>(rez);
 
 
             ViewData["userId"] = userId;

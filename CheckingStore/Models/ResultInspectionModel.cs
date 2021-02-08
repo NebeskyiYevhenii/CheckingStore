@@ -12,6 +12,20 @@ namespace DAL.Models
         public bool IsValid { get; set; }
         public DateTime CreatDate { get; set; }
 
+        public int Inspection_TypeInspectionsId { get; set; }
         public Inspection_TypeInspectionModel Inspection_TypeInspection { get; set; }
+
+        public ResultInspectionModel(int _inspection_TypeInspectionsId, bool _isValid)
+        {
+            IsValid = _isValid;
+            Inspection_TypeInspectionsId = _inspection_TypeInspectionsId;
+            CreatDate = DateTime.Now;
+
+        }
+
+
+
+
+
     }
 }

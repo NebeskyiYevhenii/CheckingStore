@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BL.Models;
+using DAL.Interfaces;
 using DAL.Models;
 using DAL.Repositories;
 using System;
@@ -12,34 +13,30 @@ namespace BL.Services.IServices
 {
     public class ResultInspectionService : IResultInspectionService
     {
-        //GenericRepository<Location> _locationRepository
-        private readonly GenericRepository<ResultInspection> _resultInspectionRepository; //IResultInspectionRepository _resultInspectionRepository;
+        private readonly IResultInspectionRepository _resultInspectionRepository = new ResultInspectionRepository();
         private readonly IMapper _mapper;
-        public ResultInspectionService(GenericRepository<ResultInspection> resultInspectionRepository)
+        public ResultInspectionService()
         {
             var mapperCofig = new MapperConfiguration(cgf =>
             {
                 cgf.CreateMap<ResultInspectionBL, ResultInspection>().ReverseMap();
-                //cgf.CreateMap<Location, LocationBL>().ReverseMap();
-
-                //cgf.CreateMap<IEnumerable<InspectionBL>, IEnumerable<Inspection>>().ReverseMap();
             });
 
             _mapper = new Mapper(mapperCofig);
 
-            _resultInspectionRepository = resultInspectionRepository;
+            //_resultInspectionRepository = ;
+        }
+
+        public void Create(ResultInspectionBL resultInspectionBL)
+        {
+            var rez1 = _mapper.Map<ResultInspection>(resultInspectionBL);
+            _resultInspectionRepository.Create(rez1);
         }
 
         public IEnumerable<ResultInspectionBL> GetAll()
         {
             var rez = _resultInspectionRepository.GetAll();
             return _mapper.Map<IEnumerable<ResultInspectionBL>>(rez);
-            //throw new NotImplementedException();
-        }
-
-        public IEnumerable<ResultInspection> GetByUserId(string userId)
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace DAL.Interfaces
 {
-    public interface IResultСhecking
+    public interface IResultInspectionRepository
     {
         IEnumerable<ResultInspection> GetAll();
         IEnumerable<ResultInspection> GetByCheckJobId(int CheckJobId);
-        ResultInspection Create(ResultInspection resultСhecking);
+        void Create(ResultInspection resultСhecking);
         ResultInspection Update(ResultInspection resultСhecking);
         void Delete(int id);
     }

@@ -13,7 +13,7 @@ namespace BL.Services
 {
     public class ResultCheckingService : IResultCheckingService
     {
-        private readonly ResultСheckingRepository _resultСheckingRepository = new ResultСheckingRepository();
+        private readonly ResultInspectionRepository _resultСheckingRepository = new ResultInspectionRepository();
         private readonly IMapper _mapper;
         public ResultCheckingService()
         {
@@ -27,11 +27,11 @@ namespace BL.Services
 
         }
 
-        public ResultСheckingBL Create(ResultСheckingBL resultСhecking)
+        public void Create(ResultСheckingBL resultСhecking)
         {
-            var result = _mapper.Map<ResultInspection>(resultСhecking);
-            var create = _resultСheckingRepository.Create(result);
-            return _mapper.Map<ResultСheckingBL>(create);
+            _mapper.Map<ResultInspection>(resultСhecking);
+            //var create = _resultСheckingRepository.Create(result);
+            //return _mapper.Map<ResultСheckingBL>(create);
         }
 
         public void Delete(int id)

@@ -10,18 +10,21 @@ using System.Data.Entity;
 
 namespace DAL.Repositories
 {
-    public class ResultСheckingRepository : IResultСhecking
+    public class ResultInspectionRepository : IResultInspectionRepository
     {
         private readonly MSSQLContext _ctx;
 
-        public ResultСheckingRepository()
+        public ResultInspectionRepository()
         {
             _ctx = new MSSQLContext();
         }
 
-        public ResultInspection Create(ResultInspection resultСhecking)
+        public void Create(ResultInspection resultInspection)
         {
-            throw new NotImplementedException();
+            _ctx.ResultInspections.Add(resultInspection);
+            _ctx.SaveChanges();
+            //return resultInspection;
+            //throw new NotImplementedException();
         }
 
         public void Delete(int id)

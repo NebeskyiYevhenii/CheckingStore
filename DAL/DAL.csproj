@@ -64,7 +64,7 @@
     <Compile Include="Contexts\ShelfFillingContext.cs" />
     <Compile Include="Contexts\ShelfEquipmentContext.cs" />
     <Compile Include="Interfaces\ICheckJob.cs" />
-    <Compile Include="Interfaces\IResultСhecking.cs" />
+    <Compile Include="Interfaces\IResultInspectionRepository.cs" />
     <Compile Include="Migrations\202101251737148_InitialCreate.cs" />
     <Compile Include="Migrations\202101251737148_InitialCreate.designer.cs">
       <DependentUpon>202101251737148_InitialCreate.cs</DependentUpon>
@@ -108,7 +108,7 @@
     <Compile Include="Repositories\IShelfFillingRepository.cs" />
     <Compile Include="Repositories\ISMPriceRepository.cs" />
     <Compile Include="Repositories\OracleRepositories.cs" />
-    <Compile Include="Repositories\ResultСheckingRepository.cs" />
+    <Compile Include="Repositories\ResultInspectionRepository.cs" />
     <Compile Include="Repositories\ShelfFillingRepository.cs" />
     <Compile Include="Repositories\ShelfEquipmentRepository.cs" />
     <Compile Include="Repositories\SMPriceRepository.cs" />

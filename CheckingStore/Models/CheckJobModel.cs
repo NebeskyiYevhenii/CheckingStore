@@ -20,6 +20,6 @@ namespace DAL.Models
         public DateTime UpdateDate { get; set; }
 
 
-        public virtual ICollection<ResultСheckingModel> ResultСheckings { get; set; }
+        //public virtual ICollection<ResultСheckingModel> ResultСheckings { get; set; }
     }
 }

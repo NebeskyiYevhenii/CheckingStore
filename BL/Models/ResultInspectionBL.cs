@@ -10,6 +10,7 @@ namespace DAL.Models
         public bool IsValid { get; set; }
         public DateTime CreatDate { get; set; }
 
+        public int Inspection_TypeInspectionsId { get; set; }
         public Inspection_TypeInspectionBL Inspection_TypeInspection { get; set; }
     }
 }
