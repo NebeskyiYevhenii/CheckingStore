@@ -43,73 +43,80 @@
             </div>
             <div class="col-lg-4">
 
-                    @foreach (var TypeInspection in ViewBag.inspection_TypeInspections)
-                    {
-                        <div class="row text-center" id="TypeInspection1">
+               @foreach (var TypeInspection in ViewBag.inspection_TypeInspections)
+               {
+                <div class="row text-center" id="TypeInspection1">
 
-                            <div class="col-lg-4">
-                                @using (Ajax.BeginForm("RecordResult", "ResultInspection", new AjaxOptions
-                                {
-                                    UpdateTargetId = "results",
-                                    LoadingElementId = "loading",
-                                    LoadingElementDuration = 1000
-                                }))
-                                {
-                                    <input type="hidden" value="@TypeInspection.TypesInspectionId" name="Inspection_typeInspectionId" />
-                                    <input type="hidden" value="true" name="rezult" />
-                                    <br><button type="submit"><img src="http://static.skaip.su/img/emoticons/180x180/f6fcff/xmasyes.gif" usemap="" width="50" height="50" /></button>
-                                        <br><div id="results"></div>
-                                    @*<p><input type="submit" value="Отправить" /></p>*@
+                    <div class="col-lg-4">
+                        @using (Ajax.BeginForm("RecordResult", "ResultInspection", new AjaxOptions
+                        {
+                            UpdateTargetId = "results",
+                            LoadingElementId = "loading",
+                            LoadingElementDuration = 1000
+                        }))
+                        {
+                            <input type="hidden" value="@TypeInspection.TypesInspectionId" name="Inspection_typeInspectionId" />
+                            <input type="hidden" value="true" name="rezult" />
+                            <br><button type="submit"><img src="http://static.skaip.su/img/emoticons/180x180/f6fcff/xmasyes.gif" usemap="" width="50" height="50" /></button>
+                        }
+                    </div>
 
-                                    @*<div name="Inspection_typeInspectionId" value="@TypeInspection.TypesInspectionId">
-                <button type="submit" name="rezult" value="true"><img src="http://static.skaip.su/img/emoticons/180x180/f6fcff/xmasyes.gif" usemap="" width="50" height="50" /></button>
-            </div>*@
+                    <div class="col-lg-4">
+                        <p>
+                            @TypeInspection.TypesInspection.Type<br>
 
-                                    <br />
-                                    <div id="loading" style="display:none; color:Red; font-weight:bold;">
-                                        <p>Идет загрузка...</p>
-                                    </div>
-                                    @*<img src="http://static.skaip.su/img/emoticons/180x180/f6fcff/xmasyes.gif" type="submit" name="rezult" value="true" usemap="" width="50" height="50" />*@
-                                }
-                            </div>
+                            @switch (@TypeInspection.TypesInspection.Type)
+                            {
+                                case "Цена":
+                                    <div>@ViewData["PRICE"]<br></div>
+                                    break;
 
-                                <div class="col-lg-4">
-                                    <p>
-                                        @TypeInspection.TypesInspection.Type<br>
+                                case "Кол-во на полке":
+                                    @ViewData["SHOWLEVEL"]<br>
+                                    break;
 
-                                        @switch (@TypeInspection.TypesInspection.Type)
-                                        {
-                                            case "Цена":
-                                                <div>@ViewData["PRICE"]<br></div>
-                                                break;
+                                case "Срок годности":
+                                    @DateTime.Now.ToString("dd.MM.yyyy")<br>
+                                    break;
+                            }
+                        </p>
+                        <br>
+                        <br><div id="results"></div>
 
-                                            case "Кол-во на полке":
-                                                @ViewData["SHOWLEVEL"]<br>
-                                                break;
+                        <div id="loading" style="display:none; color:Red; font-weight:bold;"></div>
+                        <p>Идет загрузка...</p>
+                    </div>
 
-                                            case "Срок годности":
-                                                @DateTime.Now.ToString("dd.MM.yyyy")<br>
-                                                break;
-                                        }
-                                        <br>
-                                    </p>
+                    <div class="col-lg-4">
+                        @using (Ajax.BeginForm("RecordResult", "ResultInspection", new AjaxOptions
+                        {
+                            UpdateTargetId = "results",
+                            LoadingElementId = "loading",
+                            LoadingElementDuration = 1000
+                        }))
+                        {
+                            <input type="hidden" value="@TypeInspection.TypesInspectionId" name="Inspection_typeInspectionId" />
+                            <input type="hidden" value="false" name="rezult" />
+                            <br><button type="submit"><img src="https://w7.pngwing.com/pngs/251/234/png-transparent-thumb-signal-computer-icons-bad-text-hand-smiley.png" usemap="" width="50" height="50" /></button>
 
-                                </div>
-                                <div class="col-lg-4">
-                                    <img src="https://w7.pngwing.com/pngs/251/234/png-transparent-thumb-signal-computer-icons-bad-text-hand-smiley.png" type="submit" name="rezult" value="false" usemap="" width="50" height="50" />
-                                </div>
-                             
-                        </div>
+                            <br />
+                            <div id="loading" style="display:none; color:Red; font-weight:bold;"></div>
+                            <p>Идет загрузка...</p>
 
-                    }
+                        }
+                        @*<img src="https://w7.pngwing.com/pngs/251/234/png-transparent-thumb-signal-computer-icons-bad-text-hand-smiley.png" type="submit" name="rezult" value="false" usemap="" width="50" height="50" />*@
+                    </div>
+                </div>
+                }
                     <br>
                     <a href="@Url.Action("Index3","Location",new {LocationId = @ViewData["LocationId"], Equipment = @ViewData["Equipment"], u = @ViewData["userId"]})">
                         Готово!
                     </a>
 
-                    <br>LocationId: @ViewData["LocationId"]
+                    @*<br>LocationId: @ViewData["LocationId"]
                     <br>Equipment: @ViewData["Equipment"]
-                    <br>userId: @ViewData["userId"]
+                    <br>userId: @ViewData["userId"]*@
+                
             </div>
             <div class="col-lg-4">
 

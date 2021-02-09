@@ -13,6 +13,7 @@ namespace DAL.Models
         public int TypesInspectionId { get; set; }
         public TypeInspectionModel TypesInspection { get; set; }
 
-        public ResultInspectionModel ResultInspection { get; set; }
+        //public int ResultInspectionId { get; set; }
+        //public ResultInspectionModel ResultInspection { get; set; }
     }
 }

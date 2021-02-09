@@ -63,11 +63,13 @@ namespace DAL.Contexts
                 .WithMany(x => x.Inspection_TypeInspections)
                 .HasForeignKey(x => x.InspectionId);
 
-            modelBuilder.Entity<ResultInspection>()
-                .HasRequired(x => x.Inspection_TypeInspections)
-                .WithOptional(x => x.ResultInspections);
 
-            
+            //modelBuilder.Entity<ResultInspection>()
+            //    .HasKey(x => x.Id);
+
+            modelBuilder.Entity<ResultInspection>()
+                .HasRequired(t => t.Inspection_TypeInspection)
+                .WithRequiredDependent(t => t.ResultInspection);
 
         }
     }

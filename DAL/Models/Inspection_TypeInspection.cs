@@ -11,6 +11,7 @@
         public int TypesInspectionId { get; set; }
         public TypeInspection TypesInspection { get; set; }
 
-        public ResultInspection ResultInspections { get; set; }
+        //public int ResultInspectionId { get; set; }
+        public ResultInspection ResultInspection { get; set; }
     }
 }

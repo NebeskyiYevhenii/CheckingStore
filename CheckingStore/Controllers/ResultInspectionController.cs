@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BL.Services.IServices;
 using DAL.Models;
+using CheckingStore.Models;
 using Ninject;
 using System;
 using System.Collections.Generic;
