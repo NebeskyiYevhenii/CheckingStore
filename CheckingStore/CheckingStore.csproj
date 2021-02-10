@@ -280,6 +280,7 @@
     <Content Include="Views\Filling\Index.cshtml" />
     <Content Include="Views\SMPrice\Index4.cshtml" />
     <Content Include="Views\ResultInspection\RecordResult.cshtml" />
+    <Content Include="Views\ResultInspection\RecordResult2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,12 +1,8 @@
 ﻿using AutoMapper;
 using BL.Services.IServices;
-using DAL.Models;
 using CheckingStore.Models;
+using DAL.Models;
 using Ninject;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace CheckingStore.Controllers
@@ -26,11 +22,7 @@ namespace CheckingStore.Controllers
 
             var mapperCofig = new MapperConfiguration(cgf =>
             {
-                cgf.CreateMap<ShelfFillingBL, ShelfFillingModel>().ReverseMap();
-                cgf.CreateMap<Inspection_TypeInspectionBL, Inspection_TypeInspectionModel>().ReverseMap();
                 cgf.CreateMap<ResultInspectionBL, ResultInspectionModel>().ReverseMap();
-                cgf.CreateMap<TypeInspectionBL, TypeInspectionModel>().ReverseMap();
-                //cgf.CreateMap<SMPriceBL, SMPriceModel>().ReverseMap();
             });
 
             _mapper = new Mapper(mapperCofig);

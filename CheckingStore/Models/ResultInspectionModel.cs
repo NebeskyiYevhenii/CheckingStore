@@ -2,11 +2,11 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace DAL.Models
+namespace CheckingStore.Models
 {
     public class ResultInspectionModel
     {
-        //[Key]
+        [Key]
         //[ForeignKey("Inspection_TypeInspection")]
         public int Id { get; set; }
         public bool IsValid { get; set; }

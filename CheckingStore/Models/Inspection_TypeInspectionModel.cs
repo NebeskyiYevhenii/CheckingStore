@@ -1,6 +1,6 @@
 ﻿using CheckingStore.Models;
 
-namespace DAL.Models
+namespace CheckingStore.Models
 {
     public class Inspection_TypeInspectionModel
     {

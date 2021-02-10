@@ -1,4 +1,6 @@
-﻿namespace DAL.Models
+﻿using System.Collections.Generic;
+
+namespace DAL.Models
 {
     public class Inspection_TypeInspection
     {

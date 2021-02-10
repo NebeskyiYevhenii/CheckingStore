@@ -109,6 +109,10 @@
     <Compile Include="Migrations\202102082150219_UpdateInspection_TypeInspection5.Designer.cs">
       <DependentUpon>202102082150219_UpdateInspection_TypeInspection5.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202102090937477_UpdateInspection_TypeInspection6.cs" />
+    <Compile Include="Migrations\202102090937477_UpdateInspection_TypeInspection6.Designer.cs">
+      <DependentUpon>202102090937477_UpdateInspection_TypeInspection6.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Inspection.cs" />
     <Compile Include="Models\Inspection_TypeInspection.cs" />
@@ -170,6 +174,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102082150219_UpdateInspection_TypeInspection5.resx">
       <DependentUpon>202102082150219_UpdateInspection_TypeInspection5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102090937477_UpdateInspection_TypeInspection6.resx">
+      <DependentUpon>202102090937477_UpdateInspection_TypeInspection6.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

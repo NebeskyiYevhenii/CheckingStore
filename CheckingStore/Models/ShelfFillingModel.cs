@@ -1,7 +1,7 @@
 ﻿using CheckingStore.Models;
 using System;
 
-namespace DAL.Models
+namespace CheckingStore.Models
 {
     public class ShelfFillingModel
     {

@@ -5,7 +5,7 @@ namespace DAL.Models
 {
     public class ResultInspectionBL
     {
-        //[Key]
+        [Key]
         public int Id { get; set; }
         public bool IsValid { get; set; }
         public DateTime CreatDate { get; set; }
