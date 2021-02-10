@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace DAL.Models
+namespace BL.Models
 {
     public class ResultInspectionBL
     {

@@ -1,4 +1,4 @@
-﻿@model CheckingStore.Models.ResultInspectionModel
+﻿@model CheckingStore.Models.Inspection_TypeInspectionModel
 <link href="@Url.Content("~/Content/MyStyle.css")" rel="stylesheet" type="text/css" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta charset="utf-8" />
@@ -25,7 +25,7 @@
 
             </div>
             <div class="col-lg-6">
-                <h2>@ViewData["Article(shelf)"]@*@User.Identity.Name*@</h2>
+                <h2>@ViewData["SHORTNAME"] @ViewData["Article(shelf)"]</h2>
             </div>
             <div class="col-lg-3">
 
@@ -49,20 +49,21 @@
                     <div class="row text-center" id="TypeInspection1">
 
                         <div class="col-lg-4">
-                            @using (Ajax.BeginForm("RecordResult", "ResultInspection", new AjaxOptions
+                            @using (Ajax.BeginForm("Update", "Inspection_TypeInspection", new AjaxOptions
                             {
                                 UpdateTargetId = "results",
                                 LoadingElementId = "loading",
                                 LoadingElementDuration = 1000
                             }))
                             {
-                                <input type="hidden" value="@TypeInspection.TypesInspectionId" name="Inspection_typeInspectionId" />
+                                <input type="hidden" value="@TypeInspection.Id" name="Inspection_typeInspectionId" />
                                 <input type="hidden" value="true" name="rezult" />
                                 <br><button type="submit"><img src="http://static.skaip.su/img/emoticons/180x180/f6fcff/xmasyes.gif" usemap="" width="50" height="50" /></button>
                                 <br>
-                                <div id="loading" style="display:none; color:Red; font-weight:bold;"></div>
-                                <p>Идет загрузка...</p>
+
                             }
+                            @*<div id="loading" style="display:none; color:Red; font-weight:bold;"></div>
+                            <p>Идет загрузка...</p>*@
                         </div>
 
                         <div class="col-lg-4">
@@ -89,17 +90,17 @@
                         </div>
 
                         <div class="col-lg-4">
-                            @using (Ajax.BeginForm("RecordResult", "ResultInspection", new AjaxOptions
+                            @using (Ajax.BeginForm("Update", "Inspection_TypeInspection", new AjaxOptions
                             {
                                 UpdateTargetId = "results",
                                 LoadingElementId = "loading",
                                 LoadingElementDuration = 1000
                             }))
                             {
-                                <input type="hidden" value="@TypeInspection.TypesInspectionId" name="Inspection_typeInspectionId" />
+                                <input type="hidden" value="@TypeInspection.Id" name="Inspection_typeInspectionId" />
                                 <input type="hidden" value="false" name="rezult" />
                                 <br><button type="submit"><img src="https://w7.pngwing.com/pngs/251/234/png-transparent-thumb-signal-computer-icons-bad-text-hand-smiley.png" usemap="" width="50" height="50" /></button>
-
+                                    <a href="#" class="button29"></a>
                                 @*<br />
                                 <div id="loading" style="display:none; color:Red; font-weight:bold;"></div>
                                 <p>Идет загрузка...</p>*@

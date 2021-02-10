@@ -52,8 +52,22 @@ namespace CheckingStore.Controllers
             return View(allItem);
         }
 
-        public ActionResult Index2(int LocationId, string u)
+        //public ActionResult Index2(int LocationId, string u)
+        //{
+        //    var ShelfFillingBLs = _shelfFillingService.GetEquipmentByUserIdLocId(u, LocationId);
+        //    var shelfFillingModels = _mapper.Map<IEnumerable<ShelfFillingModel>>(ShelfFillingBLs);
+        //    var equipments = shelfFillingModels.Select(x => x.EquipmentName).Distinct();
+
+        //    ViewData["Location"] = _locationService.GetById(LocationId).Name;
+        //    ViewData["LocationId"] = _locationService.GetById(LocationId).Id;
+        //    ViewData["userId"] = u;
+        //    ViewBag.Equipments = equipments;
+
+        //    return View();
+        //}
+        public ActionResult Index2(string LocationName, string u)
         {
+            int LocationId = _locationService.GetAll().Where(x => x.Name == LocationName).FirstOrDefault().Id;
             var ShelfFillingBLs = _shelfFillingService.GetEquipmentByUserIdLocId(u, LocationId);
             var shelfFillingModels = _mapper.Map<IEnumerable<ShelfFillingModel>>(ShelfFillingBLs);
             var equipments = shelfFillingModels.Select(x => x.EquipmentName).Distinct();

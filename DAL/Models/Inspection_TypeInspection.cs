@@ -1,11 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace DAL.Models
 {
     public class Inspection_TypeInspection
     {
         public int Id { get; set; }
-
+        public bool IsValid { get; set; }
+        public DateTime CreatDate { get; set; }
 
         public int InspectionId { get; set; }
         public Inspection Inspection { get; set; }

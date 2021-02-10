@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DAL.Models
+namespace BL.Models
 {
     public class TypeInspectionBL
     {

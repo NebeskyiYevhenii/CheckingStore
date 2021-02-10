@@ -1,12 +1,14 @@
 ﻿using BL.Models;
+using System;
 
-namespace DAL.Models
+namespace BL.Models
 {
     public class Inspection_TypeInspectionBL
     {
         public int Id { get; set; }
 
-
+        public bool IsValid { get; set; }
+        public DateTime CreatDate { get; set; }
         public int InspectionId { get; set; }
         public InspectionBL Inspection { get; set; }
 

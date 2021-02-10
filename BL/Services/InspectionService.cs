@@ -47,6 +47,15 @@ namespace BL.Services.IServices
 
             return _mapper.Map<IEnumerable<LocationBL>>(locations);
         }
+        
+        //public IEnumerable<LocationBL> GetAllByUser(string userId)
+        //{
+        //    var locations = _inspectionRepository.GetByUserId(userId)
+        //        .Select(x => x.Location)
+        //        .Distinct();
+
+        //    return _mapper.Map<IEnumerable<LocationBL>>(locations);
+        //}
 
 
 

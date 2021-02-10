@@ -1,7 +1,7 @@
 ﻿using BL.Models;
 using System;
 
-namespace DAL.Models
+namespace BL.Models
 {
     public class ShelfFillingBL
     {

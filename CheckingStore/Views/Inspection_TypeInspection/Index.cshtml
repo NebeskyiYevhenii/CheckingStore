@@ -1,0 +1,68 @@
+﻿@model List<string>
+@using Microsoft.AspNet.Identity
+<link href="@Url.Content("~/Content/MyStyle.css")" rel="stylesheet" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>@ViewBag.Title - Проверка магазина</title>
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+
+@{
+    ViewBag.Title = "Screen 1";
+}
+
+
+<body style="background-color:cornflowerblue; padding-top:50px;">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-lg-3">
+
+            </div>
+            <div class="col-lg-6">
+                <h2>@User.Identity.Name</h2>
+            </div>
+            <div class="col-lg-3">
+
+            </div>
+
+        </div>
+        <div class="row text-center" id="Location">
+
+            <div class="col-lg-4">
+
+            </div>
+            <div class="col-lg-4">
+                @*@using (Html.BeginForm("Index", "Location"))
+                    {
+                        foreach (var item in Model)
+                        {
+                            <p>
+                                <button type="button" value="@item.Name" class="btn btn-info btn-lg btn-block">@item.Name</button>
+                            </p>
+
+                        }
+                    }*@
+
+                @foreach (var item in Model)
+                {
+                    <p>
+                        <a href="@Url.Action("Index2","Location",new { LocationName = item, u = @ViewData["userId"]})">
+                            <div type="button" value="@item" class="btn btn-info btn-lg btn-block">
+                                @item
+                            </div>
+                        </a>
+                    </p>
+                }
+
+                @*<p><button type="button" class="btn btn-info btn-lg btn-block" onclick="location.href='@Url.Action("Index3", "ResultСhecking")'">Check</button></p>
+                *@
+            </div>
+            <div class="col-lg-4">
+
+            </div>
+
+        </div>
+    </div>
+
+</body>

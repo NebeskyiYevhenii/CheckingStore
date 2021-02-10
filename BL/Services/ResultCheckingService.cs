@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BL.Models;
 using BL.Services.IServices;
 using DAL.Contexts;
 using DAL.Models;

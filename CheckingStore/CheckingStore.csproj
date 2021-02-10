@@ -188,9 +188,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\FillingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InspectionController.cs" />
+    <Compile Include="Controllers\Inspection_TypeInspectionController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ResultInspectionController.cs" />
@@ -281,9 +283,12 @@
     <Content Include="Views\SMPrice\Index4.cshtml" />
     <Content Include="Views\ResultInspection\RecordResult.cshtml" />
     <Content Include="Views\ResultInspection\RecordResult2.cshtml" />
+    <Content Include="Views\Inspection_TypeInspection\Update.cshtml" />
+    <Content Include="Views\Inspection_TypeInspection\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Default\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

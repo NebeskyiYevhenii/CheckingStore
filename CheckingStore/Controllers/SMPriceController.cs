@@ -16,7 +16,6 @@ namespace CheckingStore.Controllers
     public class SMPriceController : Controller
     {
         private readonly IInspectionService _inspectionService;
-        //private readonly ILocationServices _locationServices;
         private readonly ISMPriceService _sMPriceService;
         private readonly IInspection_TypeInspectionService _inspection_TypeInspectionService;
 
@@ -28,22 +27,11 @@ namespace CheckingStore.Controllers
             ninjectKernel.Bind<ISMPriceService>().To<SMPriceService>();
             _sMPriceService = ninjectKernel.Get<ISMPriceService>();
 
-            //ninjectKernel.Bind<ILocationServices>().To<LocationService>();
-            //_locationServices = ninjectKernel.Get<ILocationServices>();
-
-            //ninjectKernel.Bind<IShelfFillingService>().To<ShelfFillingService>();
-            //_shelfFillingService = ninjectKernel.Get<IShelfFillingService>();
-
             ninjectKernel.Bind<IInspectionService>().To<InspectionService>();
             _inspectionService = ninjectKernel.Get<IInspectionService>();
 
             ninjectKernel.Bind<IInspection_TypeInspectionService>().To<Inspection_TypeInspectionService>();
             _inspection_TypeInspectionService = ninjectKernel.Get<IInspection_TypeInspectionService>();
-
-            //ninjectKernel.Bind<ITypeInspectionService>().To<TypeInspectionService>();
-            //_typeInspectionService = ninjectKernel.Get<ITypeInspectionService>();
-
-
 
             var mapperCofig = new MapperConfiguration(cgf =>
             {
@@ -69,6 +57,7 @@ namespace CheckingStore.Controllers
             ViewData["LocationId"] = LocationId;
             ViewData["PRICE"] = smprice.PRICE;
             ViewData["SHOWLEVEL"] = smprice.SHOWLEVEL;
+            ViewData["SHORTNAME"] = smprice.SHORTNAME;
             ViewData["Article(shelf)"] = Article;
             ViewData["Img"] = "https://static.basket.ua/image/sku/original/" + Int32.Parse(Article.Substring(0, 6)) + ".jpg";
             ViewData["Equipment"] = Equipment;

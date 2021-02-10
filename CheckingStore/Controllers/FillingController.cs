@@ -17,36 +17,15 @@ namespace CheckingStore.Controllers
     public class FillingController : Controller
     {
         private readonly IInspectionService _inspectionService;
-        //private readonly IShelfFillingService _shelfFillingService;
-        //private readonly ILocationServices _locationServices;
-        //private readonly ISMPriceService _sMPriceService;
 
-        //private readonly IInspection_TypeInspectionService _inspection_TypeInspectionService;
-        //private readonly ITypeInspectionService _typeInspectionService;
 
         private readonly IMapper _mapper;
         public FillingController()
         {
             IKernel ninjectKernel = new StandardKernel();
 
-            //ninjectKernel.Bind<ISMPriceService>().To<SMPriceService>();
-            //_sMPriceService = ninjectKernel.Get<ISMPriceService>();
-
-            //ninjectKernel.Bind<ILocationServices>().To<LocationService>();
-            //_locationServices = ninjectKernel.Get<ILocationServices>();
-
-            //ninjectKernel.Bind<IShelfFillingService>().To<ShelfFillingService>();
-            //_shelfFillingService = ninjectKernel.Get<IShelfFillingService>();
-
             ninjectKernel.Bind<IInspectionService>().To<InspectionService>();
             _inspectionService = ninjectKernel.Get<IInspectionService>();
-
-            //ninjectKernel.Bind<IInspection_TypeInspectionService>().To<Inspection_TypeInspectionService>();
-            //_inspection_TypeInspectionService = ninjectKernel.Get<IInspection_TypeInspectionService>();
-
-            //ninjectKernel.Bind<ITypeInspectionService>().To<TypeInspectionService>();
-            //_typeInspectionService = ninjectKernel.Get<ITypeInspectionService>();
-
 
 
             var mapperCofig = new MapperConfiguration(cgf =>
@@ -72,13 +51,14 @@ namespace CheckingStore.Controllers
                 throw new HttpRequestValidationException("U must be logged in");
 
             var userId = claimsIdentity.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
+            //var rez1 = _inspectionService.
             var rez = _inspectionService.GetAllLocationByUser(userId);
 
-            var models = _mapper.Map<IEnumerable<LocationModel>>(rez);
+            var locations = _mapper.Map<IEnumerable<LocationModel>>(rez);
 
 
             ViewData["userId"] = userId;
-            return View(models);
+            return View(locations);
         }
 
 

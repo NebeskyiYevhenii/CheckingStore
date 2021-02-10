@@ -20,11 +20,6 @@ namespace DAL.Repositories
             Context = context;
             DbSet = context.Set<TEntity>();
         }
-        //public GenericRepository()
-        //{
-
-        //}
-
 
         public void Delete(TEntity entityToDelete)
         {
@@ -34,6 +29,15 @@ namespace DAL.Repositories
             }
             DbSet.Remove(entityToDelete);
         }
+
+        //public void Update(TEntity entity,int id)
+        //{
+
+        //    var newItem = DbSet.Find(id);
+        //    newItem
+        //    Context.Entry(newItem).State = EntityState.Modified;
+        //    Context.SaveChanges();
+        //}
 
         public virtual IEnumerable<TEntity> GetAll()
         {

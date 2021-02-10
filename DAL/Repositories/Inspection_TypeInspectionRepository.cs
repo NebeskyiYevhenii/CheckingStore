@@ -21,5 +21,30 @@ namespace DAL.Repositories
             var rez = DbSet.Where(x => x.InspectionId == InspectionId).Include(c => c.TypesInspection).Include(c => c.Inspection).ToList();//.Include(c => c.TypesInspection);.Include(v => v.Inspection);
             return rez;
         }
+        public void Update(Inspection_TypeInspection entity)
+        {
+
+            var newItem = DbSet.Find(entity.Id);
+            newItem.IsValid = entity.IsValid;
+            newItem.CreatDate = entity.CreatDate;
+            Context.Entry(newItem).State = EntityState.Modified;
+            Context.SaveChanges();
+        }
+        public IEnumerable<Inspection_TypeInspection> GetAll1()
+        {
+
+            var rez = DbSet.Include(x=>x.Inspection.Location).ToList();
+            return rez;
+
+
+            
+            //var newItem = DbSet.Find(entity.Id);
+            //newItem.IsValid = entity.IsValid;
+            //newItem.CreatDate = entity.CreatDate;
+            //Context.Entry(newItem).State = EntityState.Modified;
+            //Context.SaveChanges();
+        }
+
+
     }
 }

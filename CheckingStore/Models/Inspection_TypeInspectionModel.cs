@@ -1,4 +1,4 @@
-﻿using CheckingStore.Models;
+﻿using System;
 
 namespace CheckingStore.Models
 {
@@ -6,6 +6,8 @@ namespace CheckingStore.Models
     {
         public int Id { get; set; }
 
+        public bool IsValid { get; set; }
+        public DateTime CreatDate { get; set; }
 
         public int InspectionId { get; set; }
         public InspectionModel Inspection { get; set; }

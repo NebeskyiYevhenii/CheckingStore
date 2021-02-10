@@ -25,6 +25,7 @@ namespace BL.Services
                 cgf.CreateMap<Inspection_TypeInspectionBL, Inspection_TypeInspection>().ReverseMap();
                 cgf.CreateMap<TypeInspectionBL, TypeInspection>().ReverseMap();
                 cgf.CreateMap<InspectionBL, Inspection>().ReverseMap();
+                cgf.CreateMap<LocationBL, Location>().ReverseMap();
             });
 
             _mapper = new Mapper(mapperCofig);
@@ -39,9 +40,7 @@ namespace BL.Services
 
         public IEnumerable<Inspection_TypeInspectionBL> GetAll()
         {
- 
-
-            var rez = _inspection_TypeInspectionRepository.GetAll();
+            var rez = _inspection_TypeInspectionRepository.GetAll1();
             return _mapper.Map<IEnumerable<Inspection_TypeInspectionBL>>(rez);
         }
         public IEnumerable<Inspection_TypeInspectionBL> GetByInspectionId(int InspectionId)
@@ -50,5 +49,24 @@ namespace BL.Services
             return _mapper.Map<IEnumerable<Inspection_TypeInspectionBL>>(rez);
         }
 
+        public void Create(Inspection_TypeInspectionBL inspection_TypeInspectionBL)
+        {
+            var res = _mapper.Map<Inspection_TypeInspection>(inspection_TypeInspectionBL);
+            _inspection_TypeInspectionRepository.Insert(res);
+            //_inspection_TypeInspectionRepository.SaveChanges();
+        }
+
+        public void Update(Inspection_TypeInspectionBL inspection_TypeInspectionBL)
+        {
+            var res = _mapper.Map<Inspection_TypeInspection>(inspection_TypeInspectionBL);
+            _inspection_TypeInspectionRepository.Update(res);
+            //_inspection_TypeInspectionRepository.SaveChanges();
+        }
+
+        public Inspection_TypeInspectionBL GetById(int id)
+        {
+            var rez = _inspection_TypeInspectionRepository.Get(x=>x.Id == id).FirstOrDefault();
+            return _mapper.Map<Inspection_TypeInspectionBL>(rez);
+        }
     }
 }

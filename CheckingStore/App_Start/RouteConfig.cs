@@ -22,7 +22,7 @@ namespace CheckingStore
             routes.MapRoute(
                 name: "Default1",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Filling", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Inspection_TypeInspection", action = "Index", id = UrlParameter.Optional }
             );
             
             //routes.MapRoute(
