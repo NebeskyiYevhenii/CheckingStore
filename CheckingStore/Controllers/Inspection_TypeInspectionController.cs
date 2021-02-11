@@ -35,6 +35,9 @@ namespace CheckingStore.Controllers
             _mapper = new Mapper(mapperCofig);
         }
 
+
+
+
         public ActionResult Update(int Inspection_typeInspectionId, bool rezult)
         {
             var inspection_TypeInspection = _inspection_TypeInspectionService.GetById(Inspection_typeInspectionId);
@@ -47,6 +50,11 @@ namespace CheckingStore.Controllers
             return PartialView();
         }
 
+
+
+
+
+
         public ActionResult Index()
         {
             ClaimsIdentity claimsIdentity = User.Identity as ClaimsIdentity;
@@ -55,12 +63,14 @@ namespace CheckingStore.Controllers
                 throw new HttpRequestValidationException("U must be logged in");
 
             var userId = claimsIdentity.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
-            var rez1 = _inspection_TypeInspectionService.GetAll().Where(x => x.CreatDate < DateTime.Parse("1900-01-02"));
+            var rez1 = _inspection_TypeInspectionService.GetAll().Where(x => x.CreatDate == DateTime.Parse("1900-01-01"));
+            //var rez2 = _inspection_TypeInspectionService.GetAll();
 
-            var inspection_TypeInspections = _mapper.Map<IEnumerable<Inspection_TypeInspectionModel>>(rez1);
-            var locations = inspection_TypeInspections.Select(x => x.Inspection.Location.Name).Distinct().ToList();
+            var NewInspection_TypeInspectionModels = _mapper.Map<IEnumerable<Inspection_TypeInspectionModel>>(rez1);
+            var locations = NewInspection_TypeInspectionModels.Select(x => x.Inspection.Location.Name).Distinct().ToList();
 
             ViewData["userId"] = userId;
+            
             return View(locations);
         }
     }

@@ -60,59 +60,5 @@ namespace CheckingStore.Controllers
             ViewData["userId"] = userId;
             return View(locations);
         }
-
-
-
-        //public ActionResult Index2(int LocationId, string u)
-        //{
-        //    var ShelfFillingBLs = _shelfFillingService.GetEquipmentByUserIdLocId(u, LocationId);
-        //    var shelfFillingModels = _mapper.Map<IEnumerable<ShelfFillingModel>>(ShelfFillingBLs);
-        //    var equipments = shelfFillingModels.Select(x => x.EquipmentName).Distinct();
-
-        //    ViewData["Location"] = _locationServices.GetById(LocationId).Name;
-        //    ViewData["LocationId"] = _locationServices.GetById(LocationId).Id;
-        //    ViewData["userId"] = u;
-        //    ViewBag.Equipments = equipments;
-
-        //    return View();
-        //}
-
-
-
-        //public ActionResult Index3(int LocationId, string Equipment, string u)
-        //{
-
-        //    var ShelfFillingBLs = _shelfFillingService.GetEquipmentByUserIdLocIdEquipment(u, LocationId, Equipment);
-        //    var shelfFillingModels = _mapper.Map<IEnumerable<ShelfFillingModel>>(ShelfFillingBLs);
-        //    var articles = shelfFillingModels.Select(x => x.Article + " (" + x.ShelfNumber + ")").Distinct();
-
-        //    ViewData["LocationId"] = _locationServices.GetById(LocationId).Id;
-        //    ViewData["Equipment"] = Equipment;
-        //    ViewData["Articles"] = articles;
-        //    ViewData["userId"] = u;
-
-        //    return View();
-        //}
-
-
-
-        //public ActionResult Index4(int LocationId, string Equipment, string Article, string u)
-        //{
-        //    var Inspection = _inspectionService.GetByLocationIdArticleUserId(LocationId, Article.Substring(0, 6), u);
-        //    var inspection_TypeInspections = _inspection_TypeInspectionService.GetByInspectionId(Inspection.Id);
-        //    var inspection_TypeInspectionsModel = _mapper.Map<IEnumerable<Inspection_TypeInspectionModel>>(inspection_TypeInspections);
-        //    var localIdSM = _locationServices.GetById(LocationId).SMLocId;
-        //    var smprice = _mapper.Map<SMPriceModel>(_sMPriceService.GetByArticleLocation(Article.Substring(0, 6), localIdSM));
-
-
-        //    ViewData["PRICE"] = smprice.PRICE;
-        //    ViewData["SHOWLEVEL"] = smprice.SHOWLEVEL;
-        //    ViewData["Article(shelf)"] = Article;
-        //    ViewData["Img"] = "https://static.basket.ua/image/sku/original/" + Int32.Parse(Article.Substring(0, 6)) + ".jpg";
-        //    ViewData["Equipment"] = Equipment;
-        //    ViewBag.inspection_TypeInspections = inspection_TypeInspectionsModel;
-
-        //    return View();
-        //}
     }
 }

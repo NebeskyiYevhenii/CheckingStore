@@ -285,6 +285,7 @@
     <Content Include="Views\ResultInspection\RecordResult2.cshtml" />
     <Content Include="Views\Inspection_TypeInspection\Update.cshtml" />
     <Content Include="Views\Inspection_TypeInspection\Index.cshtml" />
+    <Content Include="Views\SMPrice\Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

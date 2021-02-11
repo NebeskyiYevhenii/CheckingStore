@@ -37,7 +37,7 @@
             <img src="@ViewData["Img"]" usemap="" width="350" height="350" />
         </div>
 
-        <div class="row text-center" id="Location">
+        <div class="row text-center" id="results">
 
             <div class="col-lg-4">
 
@@ -49,21 +49,26 @@
                     <div class="row text-center" id="TypeInspection1">
 
                         <div class="col-lg-4">
-                            @using (Ajax.BeginForm("Update", "Inspection_TypeInspection", new AjaxOptions
+                            @using (Ajax.BeginForm("Update", "SMPrice", new AjaxOptions
                             {
                                 UpdateTargetId = "results",
                                 LoadingElementId = "loading",
                                 LoadingElementDuration = 1000
                             }))
                             {
+                                //int LocationSMLocId, int LocationId, string Equipment, string Article, string u
+
+                                <input type="hidden" value="@ViewData["LocationSMLocId"]" name="LocationSMLocId" />
+                                <input type="hidden" value="@ViewData["LocationId"]" name="LocationId" />
+                                <input type="hidden" value="@ViewData["Equipment"]" name="Equipment" />
+                                <input type="hidden" value="@ViewData["Article"]" name="Article" />
+                                <input type="hidden" value="@ViewData["userId"]" name="u" />
                                 <input type="hidden" value="@TypeInspection.Id" name="Inspection_typeInspectionId" />
                                 <input type="hidden" value="true" name="rezult" />
                                 <br><button type="submit"><img src="http://static.skaip.su/img/emoticons/180x180/f6fcff/xmasyes.gif" usemap="" width="50" height="50" /></button>
                                 <br>
 
                             }
-                            @*<div id="loading" style="display:none; color:Red; font-weight:bold;"></div>
-                            <p>Идет загрузка...</p>*@
                         </div>
 
                         <div class="col-lg-4">
@@ -85,40 +90,43 @@
                                         break;
                                 }
                             </p>
-                            <br><div id="results"></div>
+
 
                         </div>
 
                         <div class="col-lg-4">
-                            @using (Ajax.BeginForm("Update", "Inspection_TypeInspection", new AjaxOptions
+                            @using (Ajax.BeginForm("Update", "SMPrice", new AjaxOptions
                             {
                                 UpdateTargetId = "results",
                                 LoadingElementId = "loading",
                                 LoadingElementDuration = 1000
                             }))
                             {
+                                //int LocationSMLocId, int LocationId, string Equipment, string Article, string u
+
+                                <input type="hidden" value="@ViewData["LocationSMLocId"]" name="LocationSMLocId" />
+                                <input type="hidden" value="@ViewData["LocationId"]" name="LocationId" />
+                                <input type="hidden" value="@ViewData["Equipment"]" name="Equipment" />
+                                <input type="hidden" value="@ViewData["Article"]" name="Article" />
+                                <input type="hidden" value="@ViewData["userId"]" name="u" />
                                 <input type="hidden" value="@TypeInspection.Id" name="Inspection_typeInspectionId" />
                                 <input type="hidden" value="false" name="rezult" />
-                                <br><button type="submit"><img src="https://w7.pngwing.com/pngs/251/234/png-transparent-thumb-signal-computer-icons-bad-text-hand-smiley.png" usemap="" width="50" height="50" /></button>
-                                    <a href="#" class="button29"></a>
-                                @*<br />
-                                <div id="loading" style="display:none; color:Red; font-weight:bold;"></div>
-                                <p>Идет загрузка...</p>*@
+                                <br><button type="submit"><img src="https://i.pinimg.com/originals/8e/ba/b8/8ebab8e8a55274a81c211a1a402a9fb8.gif" usemap="" width="50" height="50" /></button>
 
                             }
-                            @*<img src="https://w7.pngwing.com/pngs/251/234/png-transparent-thumb-signal-computer-icons-bad-text-hand-smiley.png" type="submit" name="rezult" value="false" usemap="" width="50" height="50" />*@
                         </div>
                     </div>
                 }
                 <br>
                 <a href="@Url.Action("Index3","Location",new {LocationId = @ViewData["LocationId"], Equipment = @ViewData["Equipment"], u = @ViewData["userId"]})">
-                    Готово!
+                    <div type="button" value="" class="btn btn-info btn-lg btn-block">
+                        Готово!
+                    </div>
+
                 </a>
-
-                @*<br>LocationId: @ViewData["LocationId"]
-                    <br>Equipment: @ViewData["Equipment"]
-                    <br>userId: @ViewData["userId"]*@
-
+                @*<a href="@Url.Action("Index3","Location",new {LocationId = @ViewData["LocationId"], Equipment = @ViewData["Equipment"], u = @ViewData["userId"]})">
+                    Готово!
+                </a>*@
             </div>
             <div class="col-lg-4">
 

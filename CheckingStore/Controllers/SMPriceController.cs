@@ -46,19 +46,50 @@ namespace CheckingStore.Controllers
             _mapper = new Mapper(mapperCofig);
         }
 
-        public ActionResult Index4(int LocationSMLocId, int LocationId, string Equipment, string Article, string u)
+        public ActionResult Update(int LocationSMLocId, int LocationId, string Equipment, string Article, string u, int Inspection_typeInspectionId, bool rezult)
         {
+            var inspection_TypeInspection = _inspection_TypeInspectionService.GetById(Inspection_typeInspectionId);
+
+            inspection_TypeInspection.IsValid = rezult;
+            inspection_TypeInspection.CreatDate = DateTime.Now;
+
+            _inspection_TypeInspectionService.Update(inspection_TypeInspection);
+
             var Inspection = _inspectionService.GetByLocationIdArticleUserId(LocationId, Article.Substring(0, 6), u);
-            var inspection_TypeInspections = _inspection_TypeInspectionService.GetByInspectionId(Inspection.Id);
+            var inspection_TypeInspections = _inspection_TypeInspectionService.GetByInspectionId(Inspection.Id).Where(x=>x.CreatDate == DateTime.Parse("1900-01-01"));
             var inspection_TypeInspectionsModel = _mapper.Map<IEnumerable<Inspection_TypeInspectionModel>>(inspection_TypeInspections);
             //var localIdSM = _locationServices.GetById(LocationId).SMLocId;
             var smprice = _mapper.Map<SMPriceModel>(_sMPriceService.GetByArticleLocation(Article.Substring(0, 6), LocationSMLocId));
 
             ViewData["LocationId"] = LocationId;
+            ViewData["LocationSMLocId"] = LocationSMLocId;
             ViewData["PRICE"] = smprice.PRICE;
             ViewData["SHOWLEVEL"] = smprice.SHOWLEVEL;
             ViewData["SHORTNAME"] = smprice.SHORTNAME;
             ViewData["Article(shelf)"] = Article;
+            ViewData["Article"] = Article.Substring(0, 6);
+            ViewData["Img"] = "https://static.basket.ua/image/sku/original/" + Int32.Parse(Article.Substring(0, 6)) + ".jpg";
+            ViewData["Equipment"] = Equipment;
+            ViewData["userId"] = u;
+            ViewBag.inspection_TypeInspections = inspection_TypeInspectionsModel;
+            return PartialView();
+        }
+
+        public ActionResult Index4(int LocationSMLocId, int LocationId, string Equipment, string Article, string u)
+        {
+            var Inspection = _inspectionService.GetByLocationIdArticleUserId(LocationId, Article.Substring(0, 6), u);
+            var inspection_TypeInspections = _inspection_TypeInspectionService.GetByInspectionId(Inspection.Id).Where(x => x.CreatDate == DateTime.Parse("1900-01-01"));
+            var inspection_TypeInspectionsModel = _mapper.Map<IEnumerable<Inspection_TypeInspectionModel>>(inspection_TypeInspections);
+            //var localIdSM = _locationServices.GetById(LocationId).SMLocId;
+            var smprice = _mapper.Map<SMPriceModel>(_sMPriceService.GetByArticleLocation(Article.Substring(0, 6), LocationSMLocId));
+
+            ViewData["LocationId"] = LocationId;
+            ViewData["LocationSMLocId"] = LocationSMLocId;
+            ViewData["PRICE"] = smprice.PRICE;
+            ViewData["SHOWLEVEL"] = smprice.SHOWLEVEL;
+            ViewData["SHORTNAME"] = smprice.SHORTNAME;
+            ViewData["Article(shelf)"] = Article;
+            ViewData["Article"] = Article.Substring(0, 6);
             ViewData["Img"] = "https://static.basket.ua/image/sku/original/" + Int32.Parse(Article.Substring(0, 6)) + ".jpg";
             ViewData["Equipment"] = Equipment;
             ViewData["userId"] = u;

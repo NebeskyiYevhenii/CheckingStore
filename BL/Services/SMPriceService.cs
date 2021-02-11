@@ -22,7 +22,6 @@ namespace BL.Services
             var mapperCofig = new MapperConfiguration(cgf =>
             {
                 cgf.CreateMap<SMPriceBL, SMPRICE>().ReverseMap();
-                cgf.CreateMap<IEnumerable<SMPriceBL>, IEnumerable<SMPRICE>>().ReverseMap();
             });
 
             _mapper = new Mapper(mapperCofig);
@@ -32,7 +31,11 @@ namespace BL.Services
 
         public SMPriceBL GetByArticleLocation (string Article, int LocationId)
         {
-            var rez = _mapper.Map<SMPriceBL>(_oracleRepositories.GetAll().FirstOrDefault(x => x.ARTICLE == Article && x.STORELOC == LocationId.ToString()));
+            var rez = _mapper
+                .Map<SMPriceBL>(_oracleRepositories
+                .GetAll()
+                .FirstOrDefault(x => x.ARTICLE == Article && x.STORELOC == LocationId
+                .ToString()));
             return rez;
         }
 

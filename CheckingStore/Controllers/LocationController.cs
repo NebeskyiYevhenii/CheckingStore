@@ -17,6 +17,7 @@ namespace CheckingStore.Controllers
     {
         private readonly ILocationServices _locationService;
         private readonly IShelfFillingService _shelfFillingService;
+        private readonly IInspection_TypeInspectionService _inspection_TypeInspectionService;
         private readonly IMapper _mapper;
         public LocationController()
         {
@@ -27,8 +28,8 @@ namespace CheckingStore.Controllers
             ninjectKernel.Bind<IShelfFillingService>().To<ShelfFillingService>();
             _shelfFillingService = ninjectKernel.Get<IShelfFillingService>();
 
-            //_locationService = locationService;
-            //_locationService = new BL.Services.LocationService(;
+            ninjectKernel.Bind<IInspection_TypeInspectionService>().To<Inspection_TypeInspectionService>();
+            _inspection_TypeInspectionService = ninjectKernel.Get<IInspection_TypeInspectionService>();
 
             var mapperCofig = new MapperConfiguration(cgf =>
             {
@@ -45,52 +46,82 @@ namespace CheckingStore.Controllers
         }
 
 
-        // GET: Location
+
         public ActionResult Index()
         {
             var allItem = _mapper.Map<IEnumerable<LocationModel>>(_locationService.GetAll());
             return View(allItem);
         }
 
-        //public ActionResult Index2(int LocationId, string u)
-        //{
-        //    var ShelfFillingBLs = _shelfFillingService.GetEquipmentByUserIdLocId(u, LocationId);
-        //    var shelfFillingModels = _mapper.Map<IEnumerable<ShelfFillingModel>>(ShelfFillingBLs);
-        //    var equipments = shelfFillingModels.Select(x => x.EquipmentName).Distinct();
 
-        //    ViewData["Location"] = _locationService.GetById(LocationId).Name;
-        //    ViewData["LocationId"] = _locationService.GetById(LocationId).Id;
-        //    ViewData["userId"] = u;
-        //    ViewBag.Equipments = equipments;
 
-        //    return View();
-        //}
+
         public ActionResult Index2(string LocationName, string u)
         {
+            List<ShelfFillingModel> newEquipments = new List<ShelfFillingModel>();
+            var NewInspection_TypeInspectionModels = _mapper.Map<IEnumerable<Inspection_TypeInspectionModel>>(_inspection_TypeInspectionService.GetAll().Where(x => x.CreatDate == DateTime.Parse("1900-01-01")));
             int LocationId = _locationService.GetAll().Where(x => x.Name == LocationName).FirstOrDefault().Id;
             var ShelfFillingBLs = _shelfFillingService.GetEquipmentByUserIdLocId(u, LocationId);
             var shelfFillingModels = _mapper.Map<IEnumerable<ShelfFillingModel>>(ShelfFillingBLs);
-            var equipments = shelfFillingModels.Select(x => x.EquipmentName).Distinct();
 
-            ViewData["Location"] = _locationService.GetById(LocationId).Name;
-            ViewData["LocationId"] = _locationService.GetById(LocationId).Id;
+            foreach(var item in shelfFillingModels)
+            {
+                foreach (var item1 in NewInspection_TypeInspectionModels)
+                {
+                    //var art1 = item.Article;
+                    //var art2 = item1.Inspection.Article;
+                    //var loc1 = item.LocationId;
+                    //var loc2 = item1.Inspection.Location.SMLocId;
+
+                    if (item.Article == item1.Inspection.Article && item.LocationId == item1.Inspection.Location.SMLocId)
+                    {
+                        newEquipments.Add(item);
+                        break;
+                    }
+
+                }
+            }
+
+
+
+            var equipments = newEquipments.Select(x => x.EquipmentName).Distinct();
+
+            ViewData["Location"] = LocationName;
+            ViewData["LocationId"] = LocationId;
             ViewData["userId"] = u;
+            ViewData["NewInspection_TypeInspectionModels"] = NewInspection_TypeInspectionModels;
             ViewBag.Equipments = equipments;
 
             return View();
         }
 
-
-
         public ActionResult Index3(int LocationId, string Equipment, string u)
         {
-
+            List<ShelfFillingModel> newEquipments = new List<ShelfFillingModel>();
+            var location = _locationService.GetById(LocationId);
             var ShelfFillingBLs = _shelfFillingService.GetEquipmentByUserIdLocIdEquipment(u, LocationId, Equipment);
             var shelfFillingModels = _mapper.Map<IEnumerable<ShelfFillingModel>>(ShelfFillingBLs);
-            var articles = shelfFillingModels.Select(x => x.Article + " (" + x.ShelfNumber + ")").Distinct();
 
-            ViewData["LocationId"] = _locationService.GetById(LocationId).Id;
-            ViewData["SMLocId"] = _locationService.GetById(LocationId).SMLocId;
+            var NewInspection_TypeInspectionModels = _mapper.Map<IEnumerable<Inspection_TypeInspectionModel>>(_inspection_TypeInspectionService.GetAll().Where(x => x.CreatDate == DateTime.Parse("1900-01-01")));
+
+            foreach (var item in shelfFillingModels)
+            {
+                foreach (var item1 in NewInspection_TypeInspectionModels)
+                {
+                    if (item.Article == item1.Inspection.Article && item.LocationId == item1.Inspection.Location.SMLocId)
+                    {
+                        newEquipments.Add(item);
+                        break;
+                    }
+                }
+            }
+
+
+            var articles = newEquipments.Select(x => x.Article + " (" + x.ShelfNumber + ")").Distinct();
+
+            ViewData["LocationId"] = location.Id;
+            ViewData["LocationName"] = location.Name;
+            ViewData["SMLocId"] = location.SMLocId;
             ViewData["Equipment"] = Equipment;
             ViewData["Articles"] = articles;
             ViewData["userId"] = u;

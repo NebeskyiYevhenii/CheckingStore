@@ -33,10 +33,9 @@ namespace DAL.Contexts
                 while (reader.Read())
                 {
                     SMPRICES.Add(new SMPRICE(reader.GetString(2), reader.GetString(0), reader.GetString(1), reader.GetString(3), reader.GetString(4)));
-                    //Console.WriteLine(reader.GetString(0) + "|" + reader.GetString(1) + "|" + reader.GetString(2) + "|" + reader.GetString(3)); //Just example
                 }
             }
-            catch //(Exception e)
+            catch
             {
                 new Exception("failed to connect to the database");
             }
