@@ -30,6 +30,11 @@ namespace DAL.Repositories
             var newItem = DbSet.Find(entity.Id);
             newItem.IsValid = entity.IsValid;
             newItem.CreatDate = entity.CreatDate;
+            newItem.Remains = entity.Remains;
+            newItem.ShowLevel = entity.ShowLevel;
+            newItem.Price = entity.Price;
+            newItem.RemainsDate = entity.RemainsDate;
+
             Context.Entry(newItem).State = EntityState.Modified;
             Context.SaveChanges();
         }

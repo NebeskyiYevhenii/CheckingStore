@@ -11,6 +11,9 @@ namespace BL.Services.IServices
     {
         IEnumerable<LocationBL> GetAllLocationByUser(string UserId);
         InspectionBL GetByLocationIdArticleUserId(int LocationId,string Article, string userId);
+
+        IEnumerable<InspectionBL> GetAllByUser(string userId);
+
         //IGrouping<int, InspectionBL> GetAllLocationByUser(string UserId);
 
 

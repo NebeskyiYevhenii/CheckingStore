@@ -10,6 +10,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 
 namespace CheckingStore.Controllers
 {
@@ -53,25 +54,33 @@ namespace CheckingStore.Controllers
 
 
 
-
-
-        public ActionResult Index()
+        //[OutputCache(Duration = 300, Location = OutputCacheLocation.Server)]
+        [Authorize]
+        public ActionResult Index(string CheckDate)
         {
+            List<InspectionModel> InspectionModels = new List<InspectionModel>();
             ClaimsIdentity claimsIdentity = User.Identity as ClaimsIdentity;
-
             if (claimsIdentity == null)
                 throw new HttpRequestValidationException("U must be logged in");
-
+            //var userId = "";
+            //if (ClaimTypes.NameIdentifier != "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier")
+            //    userId = claimsIdentity.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
             var userId = claimsIdentity.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
-            var rez1 = _inspection_TypeInspectionService.GetAll().Where(x => x.CreatDate == DateTime.Parse("1900-01-01"));
-            //var rez2 = _inspection_TypeInspectionService.GetAll();
+            var rez1 = _inspection_TypeInspectionService.GetAll();
 
             var NewInspection_TypeInspectionModels = _mapper.Map<IEnumerable<Inspection_TypeInspectionModel>>(rez1);
-            var locations = NewInspection_TypeInspectionModels.Select(x => x.Inspection.Location.Name).Distinct().ToList();
-
+            ViewBag.LocationsDate = NewInspection_TypeInspectionModels.Where(x => x.Inspection.UserId == userId).Select(x => x.Inspection.CheckDate.ToString("dd.MM.yyyy")).Distinct().ToList();
             ViewData["userId"] = userId;
-            
-            return View(locations);
+            ViewData["DateCheck"] = CheckDate;
+
+            if (CheckDate != null && CheckDate !="")
+            {                
+                return View(NewInspection_TypeInspectionModels
+                    .Where(x => x.Inspection.CheckDate.ToString("dd.MM.yyyy") == CheckDate)
+                    .ToList());
+            }
+
+            return View();
         }
     }
 }

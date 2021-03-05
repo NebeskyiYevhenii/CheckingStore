@@ -10,12 +10,14 @@ using System.Web;
 using System.Web.Mvc;
 using BL.Services;
 using Ninject;
+using System.Web.UI;
 
 namespace CheckingStore.Controllers
 {
     public class LocationController : Controller
     {
         private readonly ILocationServices _locationService;
+        private readonly ISMPrice_MSService _sMPrice_MSService;
         private readonly IShelfFillingService _shelfFillingService;
         private readonly IInspection_TypeInspectionService _inspection_TypeInspectionService;
         private readonly IMapper _mapper;
@@ -24,6 +26,9 @@ namespace CheckingStore.Controllers
             IKernel ninjectKernel = new StandardKernel();
             ninjectKernel.Bind<ILocationServices>().To<LocationService>();
             _locationService = ninjectKernel.Get<ILocationServices>();
+
+            ninjectKernel.Bind<ISMPrice_MSService>().To<SMPrice_MSService>();
+            _sMPrice_MSService = ninjectKernel.Get<ISMPrice_MSService>();
 
             ninjectKernel.Bind<IShelfFillingService>().To<ShelfFillingService>();
             _shelfFillingService = ninjectKernel.Get<IShelfFillingService>();
@@ -34,12 +39,13 @@ namespace CheckingStore.Controllers
             var mapperCofig = new MapperConfiguration(cgf =>
             {
                 cgf.CreateMap<LocationBL, LocationModel>().ReverseMap();
-                cgf.CreateMap<Location, LocationModel>().ReverseMap();
+                //cgf.CreateMap<Location, LocationModel>().ReverseMap();
                 cgf.CreateMap<InspectionBL, InspectionModel>().ReverseMap();
                 cgf.CreateMap<ShelfFillingBL, ShelfFillingModel>().ReverseMap();
                 cgf.CreateMap<Inspection_TypeInspectionBL, Inspection_TypeInspectionModel>().ReverseMap();
                 cgf.CreateMap<TypeInspectionBL, TypeInspectionModel>().ReverseMap();
                 cgf.CreateMap<SMPriceBL, SMPriceModel>().ReverseMap();
+                cgf.CreateMap<SmPrice_MSBL, SmPrice_MSModel>().ReverseMap();
             });
 
             _mapper = new Mapper(mapperCofig);
@@ -47,62 +53,117 @@ namespace CheckingStore.Controllers
 
 
 
-        public ActionResult Index()
-        {
-            var allItem = _mapper.Map<IEnumerable<LocationModel>>(_locationService.GetAll());
-            return View(allItem);
-        }
+        //public ActionResult Index()
+        //{
+        //    var allItem = _mapper.Map<IEnumerable<LocationModel>>(_locationService.GetAll());
+        //    return View(allItem);
+        //}
+        //public class itemStatistic
+        //{
+        //    public string ItemName {get;set;}
+        //    public int CountVerifiedArt { get;set;}
+        //    public int CountNoVerifiedArt { get;set;}
+
+        //}
 
 
-
-
-        public ActionResult Index2(string LocationName, string u)
+        //[OutputCache(Duration = 1800, Location = OutputCacheLocation.Server)]
+        public ActionResult Index2(string DateCheck, string LocationName, string u)
         {
             List<ShelfFillingModel> newEquipments = new List<ShelfFillingModel>();
-            var NewInspection_TypeInspectionModels = _mapper.Map<IEnumerable<Inspection_TypeInspectionModel>>(_inspection_TypeInspectionService.GetAll().Where(x => x.CreatDate == DateTime.Parse("1900-01-01")));
+            List<itemStatistic> itemStatistics = new List<itemStatistic>();
+            
+            //id локации
             int LocationId = _locationService.GetAll().Where(x => x.Name == LocationName).FirstOrDefault().Id;
+            //Все новые инспекции
+            var NewInspection_TypeInspectionModels = _mapper.Map<IEnumerable<Inspection_TypeInspectionModel>>(_inspection_TypeInspectionService.GetAll().Where(x => x.CreatDate == DateTime.Parse("1900-01-01")  && x.Inspection.LocationId == LocationId && x.Inspection.UserId == u));
+            //Все инспекции
+            var AllInspection_TypeInspectionModels = _mapper.Map<IEnumerable<Inspection_TypeInspectionModel>>(_inspection_TypeInspectionService.GetAll().Where(x => x.Inspection.LocationId == LocationId && x.Inspection.UserId == u));
+            //Все старые инспекции
+            var OldInspection_TypeInspectionModels = _mapper.Map<IEnumerable<Inspection_TypeInspectionModel>>(_inspection_TypeInspectionService.GetAll().Where(x => x.CreatDate != DateTime.Parse("1900-01-01")));
+
+            //все тоары по инспекциям юзера и локации
             var ShelfFillingBLs = _shelfFillingService.GetEquipmentByUserIdLocId(u, LocationId);
             var shelfFillingModels = _mapper.Map<IEnumerable<ShelfFillingModel>>(ShelfFillingBLs);
 
-            foreach(var item in shelfFillingModels)
+            //Все новые инспекции назначенные на отфильтрованную дату
+            if (DateCheck != "" && DateCheck != null)
             {
-                foreach (var item1 in NewInspection_TypeInspectionModels)
+                NewInspection_TypeInspectionModels = NewInspection_TypeInspectionModels.Where(x => x.Inspection.CheckDate.ToString("dd.MM.yyyy") == DateCheck).ToList();
+                AllInspection_TypeInspectionModels = AllInspection_TypeInspectionModels.Where(x => x.Inspection.CheckDate.ToString("dd.MM.yyyy") == DateCheck).ToList();
+
+                foreach (var item in shelfFillingModels)
                 {
-                    //var art1 = item.Article;
-                    //var art2 = item1.Inspection.Article;
-                    //var loc1 = item.LocationId;
-                    //var loc2 = item1.Inspection.Location.SMLocId;
-
-                    if (item.Article == item1.Inspection.Article && item.LocationId == item1.Inspection.Location.SMLocId)
+                    foreach (var item1 in AllInspection_TypeInspectionModels)
                     {
-                        newEquipments.Add(item);
-                        break;
+                        if (item.Article == item1.Inspection.Article && item.LocationId == item1.Inspection.Location.SMLocId && !item.EquipmentName.Contains("TEMP"))
+                        {
+                            //Кол-во инспекций
+                            var CountArt = NewInspection_TypeInspectionModels
+                                .Where(x=>x.Inspection.Article == item.Article && x.Inspection.Location.SMLocId == item.LocationId)
+                                .Select(x => x.Inspection)
+                                .Distinct()
+                                .Count();
+                            //Кол-во не пройденых инспекций
+                            var CountNoVerifieArt = AllInspection_TypeInspectionModels
+                                .Where(x=>x.Inspection.Article == item.Article && x.Inspection.Location.SMLocId == item.LocationId && x.CreatDate == DateTime.Parse("1900-01-01"))
+                                .Select(x => x.Inspection)
+                                .Distinct()
+                                .Count();
+                            // var CountVerifiedArt = NewInspection_TypeInspectionModels.Where(x=>x.)
+                            itemStatistics.Add(new itemStatistic { ItemName = item.EquipmentName, CountVerifiedArt = CountArt - CountNoVerifieArt, CountNoVerifiedArt = CountNoVerifieArt });
+                            newEquipments.Add(item);
+                            break;
+                        }
                     }
-
                 }
+                var equipments = newEquipments.Select(x => x.EquipmentName).Distinct().ToList();
+                //var equipments1 = itemStatistics.Distinct().ToList();
+                var equipments1 = itemStatistics.GroupBy(x=>x.ItemName);
+
+                List<itemStatistic> result = itemStatistics
+                    .GroupBy(l => l.ItemName)
+                    .Select(cl => new itemStatistic
+                    {
+                        ItemName = cl.First().ItemName,
+                        CountVerifiedArt = cl.Sum(v => v.CountVerifiedArt),
+                        CountNoVerifiedArt = cl.Sum(c => c.CountNoVerifiedArt),
+                    }).ToList();
+
+                ViewData["Location"] = LocationName;
+                ViewData["LocationId"] = LocationId;
+                ViewData["userId"] = u;
+                ViewData["NewInspection_TypeInspectionModels"] = NewInspection_TypeInspectionModels;
+                ViewData["DateCheck"] = DateCheck;
+
+                //return View(equipments1);
+                return View(result);
             }
-
-
-
-            var equipments = newEquipments.Select(x => x.EquipmentName).Distinct();
-
-            ViewData["Location"] = LocationName;
-            ViewData["LocationId"] = LocationId;
-            ViewData["userId"] = u;
-            ViewData["NewInspection_TypeInspectionModels"] = NewInspection_TypeInspectionModels;
-            ViewBag.Equipments = equipments;
 
             return View();
         }
 
-        public ActionResult Index3(int LocationId, string Equipment, string u)
+        //[OutputCache(Duration = 1800, Location = OutputCacheLocation.Server)]
+        public ActionResult Index3(string DateCheck, int LocationId, string Equipment, string u)
         {
             List<ShelfFillingModel> newEquipments = new List<ShelfFillingModel>();
+            List<string> articles = new List<string>();
             var location = _locationService.GetById(LocationId);
             var ShelfFillingBLs = _shelfFillingService.GetEquipmentByUserIdLocIdEquipment(u, LocationId, Equipment);
             var shelfFillingModels = _mapper.Map<IEnumerable<ShelfFillingModel>>(ShelfFillingBLs);
+            var Inspection_TypeInspections = _inspection_TypeInspectionService
+                .GetAll()
+                .Where(x => x.CreatDate == DateTime.Parse("1900-01-01"));
 
-            var NewInspection_TypeInspectionModels = _mapper.Map<IEnumerable<Inspection_TypeInspectionModel>>(_inspection_TypeInspectionService.GetAll().Where(x => x.CreatDate == DateTime.Parse("1900-01-01")));
+            if (DateCheck != "" && DateCheck != null)
+            {
+                Inspection_TypeInspections = _inspection_TypeInspectionService
+                    .GetAll()
+                    .Where(x => x.CreatDate == DateTime.Parse("1900-01-01") && x.Inspection.CheckDate.ToString("dd.MM.yyyy") == DateCheck);
+            }
+
+
+            var NewInspection_TypeInspectionModels = _mapper.Map<IEnumerable<Inspection_TypeInspectionModel>>(Inspection_TypeInspections);
 
             foreach (var item in shelfFillingModels)
             {
@@ -111,22 +172,21 @@ namespace CheckingStore.Controllers
                     if (item.Article == item1.Inspection.Article && item.LocationId == item1.Inspection.Location.SMLocId)
                     {
                         newEquipments.Add(item);
-                        break;
+                        articles.Add(_sMPrice_MSService.GetAllByArtLoc(item.Article, location.SMLocId).FirstOrDefault().ShortName + " (" + item.Article + ")");
+                        break; 
                     }
                 }
             }
-
-
-            var articles = newEquipments.Select(x => x.Article + " (" + x.ShelfNumber + ")").Distinct();
 
             ViewData["LocationId"] = location.Id;
             ViewData["LocationName"] = location.Name;
             ViewData["SMLocId"] = location.SMLocId;
             ViewData["Equipment"] = Equipment;
             ViewData["Articles"] = articles;
+            ViewData["DateCheck"] = DateCheck;
             ViewData["userId"] = u;
-
-            return View();
+            var rez = newEquipments.OrderByDescending(x => x.ShelfNumber).ToList();
+            return View(rez);
         }
 
 

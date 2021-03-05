@@ -54,10 +54,13 @@
     <Compile Include="Models\ResultСheckingBL.cs" />
     <Compile Include="Models\ShelfFillingBL.cs" />
     <Compile Include="Models\SMPriceBL.cs" />
+    <Compile Include="Models\SmPrice_MSBL.cs" />
     <Compile Include="Models\TypeInspectionBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IServices\ISMPrice_MSService.cs" />
     <Compile Include="Services\IServices\ISMPriceService.cs" />
     <Compile Include="Services\IServices\ITypeInspectionService.cs" />
+    <Compile Include="Services\SMPrice_MSService.cs" />
     <Compile Include="Services\TypeInspectionService.cs" />
     <Compile Include="Services\ResultInspectionService.cs" />
     <Compile Include="Services\IServices\IResultInspectionService.cs" />

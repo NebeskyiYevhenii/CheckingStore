@@ -20,6 +20,11 @@ namespace BL.Models
         public int LocationId { get; set; }
         public LocationBL Location { get; set; }
 
-        //public ICollection<Inspection_TypeInspection> Inspection_TypeInspections { get; set; }
+
+        //public int ShelfFillingId { get; set; }
+        //public ShelfFillingBL ShelfFilling { get; set; }
+
+        public ICollection<Inspection_TypeInspectionBL> Inspection_TypeInspections { get; set; }
+        //public ICollection<ShelfFillingBL> ShelfFillings { get; set; }
     }
 }

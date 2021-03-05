@@ -1,6 +1,6 @@
-﻿@model List<string>
+﻿@using CheckingStore.Models
+@model List<Inspection_TypeInspectionModel>
 @using Microsoft.AspNet.Identity
-<link href="@Url.Content("~/Content/MyStyle.css")" rel="stylesheet" type="text/css" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,50 +13,72 @@
 }
 
 
-<body style="background-color:cornflowerblue; padding-top:50px;">
+<body style="padding-top:50px;">
     <div class="container">
         <div class="row text-center">
             <div class="col-lg-3">
 
             </div>
             <div class="col-lg-6">
-                <h2>@User.Identity.Name</h2>
+                <h3>@User.Identity.Name</h3>
             </div>
             <div class="col-lg-3">
 
             </div>
 
         </div>
+
         <div class="row text-center" id="Location">
 
             <div class="col-lg-4">
 
             </div>
             <div class="col-lg-4">
-                @*@using (Html.BeginForm("Index", "Location"))
-                    {
-                        foreach (var item in Model)
-                        {
-                            <p>
-                                <button type="button" value="@item.Name" class="btn btn-info btn-lg btn-block">@item.Name</button>
-                            </p>
-
-                        }
-                    }*@
-
-                @foreach (var item in Model)
+                <form method="get">
+                    <div class="form-inline">
+                        @*<label class="control-label">Дата: </label>*@
+                        @Html.DropDownList("CheckDate", new SelectList(ViewBag.LocationsDate), "Дата", htmlAttributes: new { @class = "form-control" })
+                        <input type="submit" value="Фильтр" class="btn btn-default" />
+                    </div>
+                </form>
+                <br />
+                @if (Model != null)
                 {
-                    <p>
-                        <a href="@Url.Action("Index2","Location",new { LocationName = item, u = @ViewData["userId"]})">
-                            <div type="button" value="@item" class="btn btn-info btn-lg btn-block">
-                                @item
-                            </div>
-                        </a>
-                    </p>
-                }
-
-                @*<p><button type="button" class="btn btn-info btn-lg btn-block" onclick="location.href='@Url.Action("Index3", "ResultСhecking")'">Check</button></p>
-                *@
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Магазин</th>
+                                <th scope="col">Проверенно арт.</th>
+                                <th scope="col">Не проверенно арт.</th>
+                                <th scope="col">Всего</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            @foreach (var item in Model.Select(x => x.Inspection.Location.Name).Distinct())
+                            {
+                            <tr>
+                                <td>
+                                    <a href="@Url.Action("Index2", "Location", new {DateCheck = @ViewData["DateCheck"], LocationName = @item, u = @ViewData["userId"] })">
+                                        @item
+                                    </a>
+                                </td>
+                                <td>
+                                    @{var i1 = @Model.Where(x => x.Inspection.Location.Name == @item).Select(x => x.InspectionId).Distinct().Count() - @Model.Where(x => x.Inspection.Location.Name == @item && x.CreatDate == DateTime.Parse("1900-01-01")).Select(x => x.Inspection).Distinct().Count();}
+                                    @i1
+                                </td>
+                                <td>
+                                    @Model.Where(x => x.Inspection.Location.Name == @item && x.CreatDate == DateTime.Parse("1900-01-01")).Select(x => x.Inspection).Distinct().Count()
+                                </td>
+                                <td>
+                                    @Model.Where(x => x.Inspection.Location.Name == @item).Select(x => x.InspectionId).Distinct().Count()
+                                </td>
+                            </tr>
+                            }
+                            
+                        </tbody>
+                    </table>
+                  }
             </div>
             <div class="col-lg-4">
 

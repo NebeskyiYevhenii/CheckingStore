@@ -1,5 +1,4 @@
 ﻿@model CheckingStore.Models.Inspection_TypeInspectionModel
-<link href="@Url.Content("~/Content/MyStyle.css")" rel="stylesheet" type="text/css" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,12 +9,6 @@
 @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.js")
 
 
-@*<div id="searchresults">
-
-        <h4>Цвет : @ViewData["rezult"] </h4>
-
-    </div>*@
-
 <div class="row text-center" id="results">
     <div class="col-lg-4">
 
@@ -24,74 +17,92 @@
 
         @foreach (var TypeInspection in ViewBag.inspection_TypeInspections)
         {
-            <div class="row text-center" id="TypeInspection1">
+            var color = "grey";
+            if (@TypeInspection.CreatDate == DateTime.Parse("1900-01-01"))
+            {
+                color = "green";
+            }
+            <div class="row text-center" style="background : @color">
+                @*<div class="row text-center">*@
 
-                <div class="col-lg-4">
-                    @using (Ajax.BeginForm("Update", "SMPrice", new AjaxOptions
-                    {
-                        UpdateTargetId = "results",
-                        LoadingElementId = "loading",
-                        LoadingElementDuration = 1000
-                    }))
-                    {
-                        //int LocationSMLocId, int LocationId, string Equipment, string Article, string u
-
-                        <input type="hidden" value="@ViewData["LocationSMLocId"]" name="LocationSMLocId" />
-                        <input type="hidden" value="@ViewData["LocationId"]" name="LocationId" />
-                        <input type="hidden" value="@ViewData["Equipment"]" name="Equipment" />
-                        <input type="hidden" value="@ViewData["Article"]" name="Article" />
-                        <input type="hidden" value="@ViewData["userId"]" name="u" />
-                        <input type="hidden" value="@TypeInspection.Id" name="Inspection_typeInspectionId" />
-                        <input type="hidden" value="true" name="rezult" />
-                        <br><button type="submit"><img src="http://static.skaip.su/img/emoticons/180x180/f6fcff/xmasyes.gif" usemap="" width="50" height="50" /></button>
-                        <br>
-
-                    }
-                </div>
-
-                <div class="col-lg-4">
-                    <p>
-                        @TypeInspection.TypesInspection.Type<br>
-
-                        @switch (@TypeInspection.TypesInspection.Type)
+                    <div class="col-lg-4">
+                        @using (Ajax.BeginForm("Update", "SMPrice", new AjaxOptions
                         {
-                            case "Цена":
-                                <div>@ViewData["PRICE"]<br></div>
-                                break;
+                            UpdateTargetId = "results",
+                            InsertionMode = InsertionMode.Replace, //target element(#patientList) will be replaced
+                            LoadingElementId = "loader"
+                        }))
+                        {
+                            //int LocationSMLocId, int LocationId, string Equipment, string Article, string u
 
-                            case "Кол-во на полке":
-                                @ViewData["SHOWLEVEL"]<br>
-                                break;
+                            <input type="hidden" value="@ViewData["LocationSMLocId"]" name="LocationSMLocId" />
+                            <input type="hidden" value="@ViewData["LocationId"]" name="LocationId" />
+                            <input type="hidden" value="@ViewData["Equipment"]" name="Equipment" />
+                            <input type="hidden" value="@ViewData["Article"]" name="Article" />
+                            <input type="hidden" value="@ViewData["userId"]" name="u" />
+                            <input type="hidden" value="@TypeInspection.Id" name="Inspection_typeInspectionId" />
+                            <input type="hidden" value="true" name="rezult" />
+                            <br><button type="submit">Да</button>
+                            <br>
 
-                            case "Срок годности":
-                                @DateTime.Now.ToString("dd.MM.yyyy")<br>
-                                break;
                         }
-                    </p>
+                    </div>
+
+                    <div class="col-lg-4 text-center">
+                        <div id="loader" class=" aletr" style="display:none">
+                            Loading...<img src="https://i.pinimg.com/originals/4c/14/02/4c14021095fd20edc900e2e9b91d318e.gif" width="100" height="30" />
+                        </div>
+                        <p>
+                            @TypeInspection.TypesInspection.Type<br>
+
+                            @switch (@TypeInspection.TypesInspection.Type)
+                            {
+                                case "Цена":
+                                    <div>@ViewData["PRICE"]<br></div>
+                                    break;
+
+                                case "Кол-во на полке":
+                                    @ViewData["SHOWLEVEL"]<br>
+                                    break;
+
+                                case "Срок годности":
+                                    @DateTime.Now.ToString("dd.MM.yyyy")<br>
+                                    break;
+                            }
+                        </p>
 
 
+                    </div>
+
+                    <div class="col-lg-4">
+                        @using (Ajax.BeginForm("Update", "SMPrice", new AjaxOptions
+                        {
+                            UpdateTargetId = "results",
+                            InsertionMode = InsertionMode.Replace, //target element(#patientList) will be replaced
+                            LoadingElementId = "loader"
+                        }))
+                        {
+                            //int LocationSMLocId, int LocationId, string Equipment, string Article, string u
+
+                            <input type="hidden" value="@ViewData["LocationSMLocId"]" name="LocationSMLocId" />
+                            <input type="hidden" value="@ViewData["LocationId"]" name="LocationId" />
+                            <input type="hidden" value="@ViewData["Equipment"]" name="Equipment" />
+                            <input type="hidden" value="@ViewData["Article"]" name="Article" />
+                            <input type="hidden" value="@ViewData["userId"]" name="u" />
+                            <input type="hidden" value="@TypeInspection.Id" name="Inspection_typeInspectionId" />
+                            <input type="hidden" value="false" name="rezult" />
+                            <br><button type="submit">Нет</button>
+                            <br>
+
+                        }
+                    </div>
                 </div>
-
-                <div class="col-lg-4">
-                    @using (Ajax.BeginForm("Update", "Inspection_TypeInspection", new AjaxOptions
-                    {
-                        UpdateTargetId = "results",
-                        LoadingElementId = "loading",
-                        LoadingElementDuration = 1000
-                    }))
-                    {
-                        <input type="hidden" value="@TypeInspection.Id" name="Inspection_typeInspectionId" />
-                        <input type="hidden" value="false" name="rezult" />
-                        <br><button type="submit"><img src="https://i.pinimg.com/originals/8e/ba/b8/8ebab8e8a55274a81c211a1a402a9fb8.gif" usemap="" width="50" height="50" /></button>
-
-                    }
-                </div>
-            </div>
-        }
-        <br>
-        <a href="@Url.Action("Index3","Location",new {LocationId = @ViewData["LocationId"], Equipment = @ViewData["Equipment"], u = @ViewData["userId"]})">
-            Готово!
-        </a>
+         }
+          <br>
+         <a href="@Url.Action("Index3", "Location", new { DateCheck = @ViewData["DateCheck"], LocationId = @ViewData["LocationId"], Equipment = @ViewData["Equipment"], u = @ViewData["userId"] })">
+             Готово!
+         </a>
+        
     </div>
     <div class="col-lg-4">
 

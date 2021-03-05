@@ -18,6 +18,10 @@ namespace CheckingStore.Models
         public int LocationId { get; set; }
         public LocationModel Location { get; set; }
 
-        //public ICollection<Inspection_TypeInspection> Inspection_TypeInspections { get; set; }
+        //public int ShelfFillingId { get; set; }
+        //public ShelfFillingModel ShelfFilling { get; set; }
+
+        public ICollection<Inspection_TypeInspectionModel> Inspection_TypeInspections { get; set; }
+        //public ICollection<ShelfFillingModel> ShelfFillings { get; set; }
     }
 }

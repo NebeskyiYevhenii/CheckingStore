@@ -24,6 +24,7 @@ namespace BL.Services
             {
                 cgf.CreateMap<ShelfFillingBL, ShelfFilling>().ReverseMap();
                 cgf.CreateMap<InspectionBL, Inspection>().ReverseMap();
+                cgf.CreateMap<LocationBL, Location>().ReverseMap();
                 //cgf.CreateMap<IEnumerable<LocationBL>, IEnumerable<Location>>().ReverseMap();
             });
 

@@ -43,7 +43,7 @@ namespace CheckingStore.Controllers
 
 
 
-        public ActionResult Index()
+        public ActionResult Index_old()
         {
             ClaimsIdentity claimsIdentity = User.Identity as ClaimsIdentity;
 
@@ -59,6 +59,26 @@ namespace CheckingStore.Controllers
 
             ViewData["userId"] = userId;
             return View(locations);
+        }
+
+
+
+        public ActionResult Index()
+        {
+            ClaimsIdentity claimsIdentity = User.Identity as ClaimsIdentity;
+
+            if (claimsIdentity == null)
+                throw new HttpRequestValidationException("U must be logged in");
+
+            var userId = claimsIdentity.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
+            //var rez1 = _inspectionService.
+            var rez = _inspectionService.GetAllByUser(userId);
+
+            var Inspections = _mapper.Map<IEnumerable<InspectionModel>>(rez);
+
+
+            ViewData["userId"] = userId;
+            return View(Inspections);
         }
     }
 }

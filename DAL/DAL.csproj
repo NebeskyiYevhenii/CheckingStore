@@ -117,6 +117,22 @@
     <Compile Include="Migrations\202102101838378_UpdateInspection_TypeInspection7.Designer.cs">
       <DependentUpon>202102101838378_UpdateInspection_TypeInspection7.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202102181145340_Add_Table_SmPrice_MS.cs" />
+    <Compile Include="Migrations\202102181145340_Add_Table_SmPrice_MS.Designer.cs">
+      <DependentUpon>202102181145340_Add_Table_SmPrice_MS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102181207447_Add_Table_SmPrice_MS_v2.cs" />
+    <Compile Include="Migrations\202102181207447_Add_Table_SmPrice_MS_v2.Designer.cs">
+      <DependentUpon>202102181207447_Add_Table_SmPrice_MS_v2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102241532150_Add_3_Columns_to_Inspection_TypeInspection_and_1_col_to_SmPrice_MS.cs" />
+    <Compile Include="Migrations\202102241532150_Add_3_Columns_to_Inspection_TypeInspection_and_1_col_to_SmPrice_MS.Designer.cs">
+      <DependentUpon>202102241532150_Add_3_Columns_to_Inspection_TypeInspection_and_1_col_to_SmPrice_MS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102251437331_add_RemainsDate_to_Inspection_TypeInspection_and_SmPrice_MS.cs" />
+    <Compile Include="Migrations\202102251437331_add_RemainsDate_to_Inspection_TypeInspection_and_SmPrice_MS.Designer.cs">
+      <DependentUpon>202102251437331_add_RemainsDate_to_Inspection_TypeInspection_and_SmPrice_MS.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Inspection.cs" />
     <Compile Include="Models\Inspection_TypeInspection.cs" />
@@ -124,6 +140,7 @@
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\ShelfFilling.cs" />
     <Compile Include="Models\ShelfEquipment.cs" />
+    <Compile Include="Models\SmPrice_MS.cs" />
     <Compile Include="Models\SMPRICE.cs" />
     <Compile Include="Models\TypeInspection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -134,11 +151,13 @@
     <Compile Include="Repositories\InspectionRepository.cs" />
     <Compile Include="Repositories\Inspection_TypeInspectionRepository.cs" />
     <Compile Include="Repositories\IShelfFillingRepository.cs" />
+    <Compile Include="Repositories\ISMPrice_MSRepository.cs" />
     <Compile Include="Repositories\ISMPriceRepository.cs" />
     <Compile Include="Repositories\OracleRepositories.cs" />
     <Compile Include="Repositories\ResultInspectionRepository.cs" />
     <Compile Include="Repositories\ShelfFillingRepository.cs" />
     <Compile Include="Repositories\ShelfEquipmentRepository.cs" />
+    <Compile Include="Repositories\SmPrice_MSRepository.cs" />
     <Compile Include="Repositories\SMPriceRepository.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -184,6 +203,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102101838378_UpdateInspection_TypeInspection7.resx">
       <DependentUpon>202102101838378_UpdateInspection_TypeInspection7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102181145340_Add_Table_SmPrice_MS.resx">
+      <DependentUpon>202102181145340_Add_Table_SmPrice_MS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102181207447_Add_Table_SmPrice_MS_v2.resx">
+      <DependentUpon>202102181207447_Add_Table_SmPrice_MS_v2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102241532150_Add_3_Columns_to_Inspection_TypeInspection_and_1_col_to_SmPrice_MS.resx">
+      <DependentUpon>202102241532150_Add_3_Columns_to_Inspection_TypeInspection_and_1_col_to_SmPrice_MS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102251437331_add_RemainsDate_to_Inspection_TypeInspection_and_SmPrice_MS.resx">
+      <DependentUpon>202102251437331_add_RemainsDate_to_Inspection_TypeInspection_and_SmPrice_MS.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

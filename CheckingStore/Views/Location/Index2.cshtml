@@ -1,4 +1,6 @@
-﻿<link href="@Url.Content("~/Content/MyStyle.css")" rel="stylesheet" type="text/css" />
+﻿@using CheckingStore.Models
+@*@model List<string>*@
+@model List<itemStatistic>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,17 +14,20 @@
     ViewBag.Title = "Index2";
 }
 
-<body style="background-color:cornflowerblue; padding-top:50px;">
+<body style="padding-top:50px;">
     <div class="container">
         <div class="row text-center">
-            @Html.ActionLink("Назад", "Index", "Inspection_TypeInspection")
+            @*@Html.ActionLink("Назад", "Index", "Inspection_TypeInspection")*@
+            <a href="@Url.Action("Index", "Inspection_TypeInspection", new { DateCheck = @ViewData["DateCheck"]})">
+                Назад
+            </a>
         </div>
         <div class="row text-center">
             <div class="col-lg-3">
 
             </div>
             <div class="col-lg-6">
-                <h2>@ViewData["Location"]@*@User.Identity.Name*@</h2>
+                <h3>@ViewData["Location"]</h3>
             </div>
             <div class="col-lg-3">
 
@@ -31,29 +36,49 @@
         </div>
         <div class="row text-center" id="Location">
             <div class="col-lg-4">
-
             </div>
+
             <div class="col-lg-4">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Стелаж</th>
+                            <th scope="col">Проверенно арт.</th>
+                            <th scope="col">Не проверенно арт.</th>
+                            <th scope="col">Всего</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if(Model != null)
+                        {
+                            foreach (var Equipment in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <a href="@Url.Action("Index3", "Location", new { DateCheck = @ViewData["DateCheck"], LocationId = @ViewData["LocationId"], Equipment = Equipment.ItemName, u = @ViewData["userId"] })">
+                                            @Equipment.ItemName
+                                        </a>
+                                    </td>
+                                    <td>
+                                        @Equipment.CountVerifiedArt
+                                    </td>
+                                    <td>
+                                        @Equipment.CountNoVerifiedArt
+                                    </td>
+                                    <td>
+                                        @{var all = Equipment.CountNoVerifiedArt + Equipment.CountVerifiedArt;}
+                                        @all
+                                    </td>
+                                </tr>
+                            }
+                         }
+                    </tbody>
+                </table>
 
-                @foreach (var Equipment in ViewBag.Equipments)
-                {
-                <p>
-                    <a href="@Url.Action("Index3","Location",new {LocationId = @ViewData["LocationId"], Equipment = Equipment, id="menu", u = @ViewData["userId"]})">
-                        <div type="button" value="@Equipment" class="btn btn-info btn-lg btn-block">
-                            @Equipment
-                        </div>
-                        
-                    </a>
-
-                </p>
-                }
-
+                <br />
             </div>
-            @*<br>LocationId: @ViewData["LocationId"]
-            <br>Equipment: @ViewData["Equipment"]
-            <br>userId: @ViewData["userId"]*@
-            <div class="col-lg-4">
 
+            <div class="col-lg-4">
             </div>
 
         </div>

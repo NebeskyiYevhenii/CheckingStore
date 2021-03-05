@@ -20,6 +20,10 @@ namespace DAL.Models
         public int LocationId { get; set; }
         public Location Location { get; set; }
 
+        //public int ShelfFillingId { get; set; }
+        //public ShelfFilling ShelfFilling { get; set; }
+
         public ICollection<Inspection_TypeInspection> Inspection_TypeInspections { get; set; }
+        //public ICollection<ShelfFilling> ShelfFillings { get; set; }
     }
 }
